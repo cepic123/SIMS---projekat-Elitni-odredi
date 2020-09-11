@@ -327,7 +327,11 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+    	System.out.println(jTextField3.getText());
+    	System.out.println(jTextField4.getText());
+    	System.out.println(jTextField5.getText());
+    	System.out.println(jTextField6.getText());
+    	System.out.println(jTextField7.getText());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
