@@ -24,6 +24,9 @@ public class UserProfile extends JPanel implements ActionListener{
 	private JButton changeInfo;
 	private JButton applyChange;
 	private RecipesTable tableOfRecipes;
+	private JButton createRecipe;
+	private JButton updateRecipe;
+	private JButton deleteRecipe;
 	
 	public UserProfile() {
 		
@@ -44,6 +47,10 @@ public class UserProfile extends JPanel implements ActionListener{
 	    
 	    password = new JPasswordField(20);
 	    password.setEditable(false);
+	    
+	    createRecipe = new JButton("Dodaj recept");
+		updateRecipe = new JButton("Izmeni recept");
+		deleteRecipe = new JButton("Obrisi recept");
 	    
 	    changePhoto = new JButton("Promeni profilnu fotografiju");
 	    changeInfo = new JButton("Promeni podatke");
@@ -134,6 +141,22 @@ public class UserProfile extends JPanel implements ActionListener{
 	    gbc.gridx = 0;
 	    gbc.gridy = 7;
 	    add(scrollPane, gbc);
+	    
+	    gbc.gridwidth = 1;
+	    gbc.gridx = 1;
+	    gbc.gridy = 8;
+	    add(createRecipe, gbc);
+	    
+	    gbc.gridx = 2;
+	    gbc.gridy = 8;
+	    add(updateRecipe, gbc);
+	    
+	    gbc.gridx = 3;
+	    gbc.gridy = 8;
+	    add(deleteRecipe, gbc);
+	    
+//		updateRecipe = new JButton("Izmeni recept");
+//		deleteRecipe = new JButton("Obrisi recept");
 	}
 	
 	private void setData() {
