@@ -63,4 +63,36 @@ public class NavigationPanel extends JPanel {
 		add(logOutButton);
 		
 	}
+
+	public JButton getNewsFeedButton() {
+		return newsFeedButton;
+	}
+
+	public void setNewsFeedButton(JButton newsFeedButton) {
+		this.newsFeedButton = newsFeedButton;
+	}
+
+	public JButton getSearchButton() {
+		return searchButton;
+	}
+
+	public void setSearchButton(JButton searchButton) {
+		this.searchButton = searchButton;
+	}
+
+	public JButton getProfileButton() {
+		return profileButton;
+	}
+
+	public void setProfileButton(JButton profileButton) {
+		this.profileButton = profileButton;
+	}
+
+	public JButton getLogOutButton() {
+		return logOutButton;
+	}
+
+	public void setLogOutButton(JButton logOutButton) {
+		this.logOutButton = logOutButton;
+	}
 }

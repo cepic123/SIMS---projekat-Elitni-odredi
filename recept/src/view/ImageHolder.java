@@ -9,10 +9,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class RecipeImage extends JPanel {
+public class ImageHolder extends JPanel {
 	private BufferedImage image;
 	
-	public RecipeImage() {
+	public ImageHolder() {
 		
 		setPreferredSize(new Dimension(400,250));
 	}

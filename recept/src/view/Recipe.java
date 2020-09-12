@@ -16,7 +16,7 @@ public class Recipe extends JPanel {
 	private JLabel recipeName;
 	private JLabel username;
 	private JLabel recipeDescription;
-	private RecipeImage ri;
+	private ImageHolder ri;
 	private JButton detailsButton;
 	
 	public Recipe() {
@@ -40,7 +40,7 @@ public class Recipe extends JPanel {
 		recipeName = new JLabel();
 		recipeDescription = new JLabel();
 		detailsButton = new JButton("Detaljnije");
-		ri = new RecipeImage();
+		ri = new ImageHolder();
 		
 		setData();
 		
