@@ -44,7 +44,7 @@ public class NavigationPanel extends JPanel {
 		setBackground(lighterOrange);
 		
 		newsFeedButton.setBackground(Color.WHITE);
-		newsFeedButton.setForeground(lightOrange);
+//		newsFeedButton.setForeground(lightOrange);
 		
 		searchButton.setBackground(Color.WHITE);
 		searchButton.setBorder(buttonBorder);

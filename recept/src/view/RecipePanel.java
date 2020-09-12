@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class Recipe extends JPanel {
+public class RecipePanel extends JPanel {
 	
 	private JLabel recipeName;
 	private JLabel username;
@@ -19,13 +19,7 @@ public class Recipe extends JPanel {
 	private ImageHolder ri;
 	private JButton detailsButton;
 	
-	public Recipe() {
-		
-//		setMaximumSize(new Dimension(750,300));
-//		setMinimumSize(new Dimension(750,300));
-//		setPreferredSize(new Dimension(750,200));
-		
-		
+	public RecipePanel() {
 		
 		initComponents();
 		
@@ -33,8 +27,9 @@ public class Recipe extends JPanel {
 	
 	private void initComponents() {
 		
-		Border blackBorder = BorderFactory.createLineBorder(Color.black);
-		setBorder(blackBorder);
+//		Border blackBorder = BorderFactory.createLineBorder(Color.black);
+//		setBorder(blackBorder);
+		setBackground(Color.white);
 		
 		username = new JLabel();
 		recipeName = new JLabel();

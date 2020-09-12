@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,6 +19,7 @@ public class AppWindow extends JFrame implements ActionListener {
 	private Search search = new Search();
 	private int current;
 	private JScrollPane scroll;
+	private Color lightOrange   = new Color(255, 166, 111);
 	
 	public AppWindow() {
 		
@@ -29,6 +31,9 @@ public class AppWindow extends JFrame implements ActionListener {
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
 		
 		current = 0; //0 je newsfeed
+		
+		
+		navigationBar.getNewsFeedButton().setForeground(lightOrange);
 		add(navigationBar, BorderLayout.WEST);
 		add(scroll, BorderLayout.CENTER);
 
@@ -39,10 +44,13 @@ public class AppWindow extends JFrame implements ActionListener {
 	
 	private JPanel getCurrentComponent() {
 		if(current == 0) {
+			navigationBar.getNewsFeedButton().setForeground(Color.black);
 			return newsFeed;
 		} else if(current == 1) {
+			navigationBar.getProfileButton().setForeground(Color.black);
 			return userProfile;
 		} else if(current == 2){
+			navigationBar.getSearchButton().setForeground(Color.black);
 			return search;
 		} else  {
 			return new JPanel();
@@ -57,12 +65,15 @@ public class AppWindow extends JFrame implements ActionListener {
 		
 		if(clicked == navigationBar.getProfileButton()) {
 			changePanel(currentPanel, userProfile);
+			navigationBar.getProfileButton().setForeground(lightOrange);
 			current = 1;
 		} else if(clicked == navigationBar.getNewsFeedButton()) {
 			changePanel(currentPanel, newsFeed);
+			navigationBar.getNewsFeedButton().setForeground(lightOrange);
 			current = 0;
 		} else if(clicked == navigationBar.getSearchButton()) {
 			changePanel(currentPanel, search);
+			navigationBar.getSearchButton().setForeground(lightOrange);
 			current = 2;
 		}
 	}

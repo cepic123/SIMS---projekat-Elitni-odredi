@@ -11,7 +11,8 @@ import javax.swing.JPanel;
 
 public class NewsFeed extends JPanel {
 	JButton addRecipe;
-	private ArrayList<Recipe> recipes;
+	private ArrayList<RecipePanel> recipes;
+	private JButton next;
 	
 	public NewsFeed() {
 		
@@ -20,10 +21,11 @@ public class NewsFeed extends JPanel {
 	}
 	
 	private void initComponents() {
-		recipes = new ArrayList<Recipe>();
+		recipes = new ArrayList<RecipePanel>();
+		next = new JButton("Sledeca strana");
 		
 		for(int i = 0; i < 4; i++) {
-			recipes.add(new Recipe());
+			recipes.add(new RecipePanel());
 		}
 		
 		addRecipe = new JButton("Dodaj recept");
@@ -59,6 +61,15 @@ public class NewsFeed extends JPanel {
 	    gbc.gridy = 4;
 	    add(recipes.get(3), gbc);
 	    
+	    gbc.gridx = 0;
+	    gbc.gridy = 5;
+	    add(next, gbc);
+	}
+	
+	private void setData() {
+		for(int i = 0; i < recipes.size(); i++) {
+			recipes.get(i).setData();
+		}
 	}
 }
 
