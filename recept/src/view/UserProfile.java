@@ -1,16 +1,21 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class UserProfile extends JPanel {
+public class UserProfile extends JPanel implements ActionListener{
 	private ImageHolder image;
 	private JTextField username;
 	private JTextField fullName;
@@ -18,6 +23,7 @@ public class UserProfile extends JPanel {
 	private JButton changePhoto;
 	private JButton changeInfo;
 	private JButton applyChange;
+	private RecipesTable tableOfRecipes;
 	
 	public UserProfile() {
 		
@@ -29,13 +35,13 @@ public class UserProfile extends JPanel {
 		image = new ImageHolder();
 		image.setImage("images/markuza.png");
 	    
-	    JLabel usernameL = new JLabel("Korisnicko ime:");
+	    
 	    username = new JTextField(20);
 	    username.setEditable(false);
-	    JLabel fullNameL = new JLabel("Puno ime:");
+	    
 	    fullName = new JTextField(20);
 	    fullName.setEditable(false);
-	    JLabel passwordL = new JLabel("Lozinka:");
+	    
 	    password = new JPasswordField(20);
 	    password.setEditable(false);
 	    
@@ -43,61 +49,91 @@ public class UserProfile extends JPanel {
 	    changeInfo = new JButton("Promeni podatke");
 	    applyChange = new JButton("Sacuvaj promene");
 	    
-	    setData();
+	    tableOfRecipes = new RecipesTable();
 	    
-	    GridBagLayout layout = new GridBagLayout();
+	    setData();
+	    manageLayout();
+	    
+	    setActionListeners();
+	}
+	
+	private void setActionListeners() {
+		changeInfo.addActionListener(this);
+		applyChange.addActionListener(this);
+	}
+	
+	private void manageLayout() {
+		JLabel usernameL = new JLabel("Korisnicko ime:");
+		JLabel fullNameL = new JLabel("Puno ime:");
+		JLabel passwordL = new JLabel("Lozinka:");
+		JLabel userRecipesL = new JLabel("Moji recepti");
+	    userRecipesL.setFont(new Font("Serif", Font.PLAIN, 24));
+	    
+	    JScrollPane scrollPane = new JScrollPane(tableOfRecipes);
+	    scrollPane.setPreferredSize(new Dimension(700,200));
+	    
+		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.ipady = 10;
 		gbc.insets = new Insets(10,3,3,3);
+		gbc.weightx = 1.0;
 		
-		
-		gbc.gridwidth = 2;
+		gbc.gridwidth = 5;
 		gbc.gridx = 0;
 	    gbc.gridy = 0;
 	    add(image, gbc);
 	    
 	    gbc.gridwidth = 1;
-		gbc.gridx = 1;
+		gbc.gridx = 2;
 	    gbc.gridy = 1;
 	    add(changePhoto, gbc);
 	    
 	    gbc.insets = new Insets(10,0,0,0);
 	    
 	    gbc.gridwidth = 1;
-	    gbc.gridx = 0;
+	    gbc.gridx = 1;
 	    gbc.gridy = 2;
 	    add(usernameL, gbc);
 	    
-	    gbc.gridx = 1;
+	    gbc.gridx = 2;
 	    gbc.gridy = 2;
 	    add(username, gbc);
 	    
-	    gbc.gridx = 0;
+	    gbc.gridx = 1;
 	    gbc.gridy = 3;
 	    add(fullNameL, gbc);
 	    
-	    gbc.gridx = 1;
+	    gbc.gridx = 2;
 	    gbc.gridy = 3;
 	    add(fullName, gbc);
 	    
-	    gbc.gridx = 0;
+	    gbc.gridx = 1;
 	    gbc.gridy = 4;
 	    add(passwordL, gbc);
 	    
-	    gbc.gridx = 1;
+	    gbc.gridx = 2;
 	    gbc.gridy = 4;
 	    add(password, gbc);
 	    
 	    gbc.insets = new Insets(20,0,0,0);
 	    
-	    gbc.gridx = 0;
+	    gbc.gridx = 1;
 	    gbc.gridy = 5;
 	    add(changeInfo, gbc);
 	    
-	    gbc.gridx = 1;
+	    gbc.gridx = 3;
 	    gbc.gridy = 5;
 	    add(applyChange, gbc);
+	    
+	    gbc.gridx = 2;
+	    gbc.gridy = 6;
+	    add(userRecipesL, gbc);
+	    
+	    gbc.gridwidth = 5;
+	    gbc.gridx = 0;
+	    gbc.gridy = 7;
+	    add(scrollPane, gbc);
 	}
 	
 	private void setData() {
@@ -105,6 +141,22 @@ public class UserProfile extends JPanel {
 		username.setText("Peki");
 		fullName.setText("Zokijev Tigar");
 		password.setText("tanjasavicjeekstra");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		JButton clicked = (JButton)e.getSource();
+		if(clicked == changeInfo) {
+			username.setEditable(true);
+		    fullName.setEditable(true);
+		    password.setEditable(true);
+		} else if(clicked == applyChange) {
+			username.setEditable(false);
+		    fullName.setEditable(false);
+		    password.setEditable(false);
+		}
+		
 	}
 	
 	// TO DO 

@@ -15,6 +15,7 @@ public class AppWindow extends JFrame implements ActionListener {
 	private NavigationPanel navigationBar = new NavigationPanel();
 	private NewsFeed newsFeed = new NewsFeed();
 	private UserProfile userProfile = new UserProfile();
+	private Search search = new Search();
 	private int current;
 	private JScrollPane scroll;
 	
@@ -32,16 +33,19 @@ public class AppWindow extends JFrame implements ActionListener {
 		add(scroll, BorderLayout.CENTER);
 
 		navigationBar.getProfileButton().addActionListener(this);
+		navigationBar.getNewsFeedButton().addActionListener(this);
+		navigationBar.getSearchButton().addActionListener(this);
 	}
 	
-	private JScrollPane getCurrentComponent() {
+	private JPanel getCurrentComponent() {
 		if(current == 0) {
-			
-			return scroll;
+			return newsFeed;
 		} else if(current == 1) {
-			return new JScrollPane();
-		} else {
-			return new JScrollPane();
+			return userProfile;
+		} else if(current == 2){
+			return search;
+		} else  {
+			return new JPanel();
 		}
 	}
 
@@ -49,19 +53,26 @@ public class AppWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		JButton clicked = (JButton)e.getSource();
+		JPanel currentPanel = getCurrentComponent();
+		
 		if(clicked == navigationBar.getProfileButton()) {
-			System.out.println("sd");
-			//JScrollPane curr = getCurrentComponent();
-			remove(scroll);
-			//removeComponent(curr);
-			//remove(getCurrentComponent());
-//			add(userProfile, BorderLayout.CENTER);
+			changePanel(currentPanel, userProfile);
 			current = 1;
+		} else if(clicked == navigationBar.getNewsFeedButton()) {
+			changePanel(currentPanel, newsFeed);
+			current = 0;
+		} else if(clicked == navigationBar.getSearchButton()) {
+			changePanel(currentPanel, search);
+			current = 2;
 		}
 	}
 	
-	private void removeComponent(JScrollPane current) {
-		remove(current);
+	private void changePanel(JPanel current, JPanel panelToSet) {
+		scroll.getViewport().remove(current);
+		scroll.getViewport().add(panelToSet);
+		
+		scroll.revalidate();
+		scroll.repaint();
 	}
 
 	public JScrollPane getScroll() {
