@@ -1,5 +1,7 @@
 
 import java.awt.CardLayout;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 import view.AppWindow;
@@ -21,8 +23,8 @@ public class main extends javax.swing.JFrame {
      */
     CardLayout cl;
     public main() {
-//        initComponents();
-//        cl = (CardLayout) pnlCards.getLayout();
+        initComponents();
+        cl = (CardLayout) pnlCards.getLayout();
     	
     }
     
@@ -314,6 +316,7 @@ public class main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         cl.show(pnlCards, "pnlCard3");
+        System.out.println("ADAS");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -330,8 +333,8 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    	System.out.println(jTextField3.getText());
     	System.out.println(jTextField4.getText());
+    	System.out.println(jTextField3.getText());
     	System.out.println(jTextField5.getText());
     	System.out.println(jTextField6.getText());
     	System.out.println(jTextField7.getText());
@@ -341,6 +344,9 @@ public class main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+    	Aplikacija aplikacija = new Aplikacija("Naziv","domen",new ArrayList<Korisnik>(), new ArrayList<Recept>());
+    	aplikacija.napuniKorisnike();
+    	aplikacija.napuniRecepte();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -367,12 +373,12 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new main().setVisible(true);
+               new main().setVisible(true);
             	
             	// -------------- TEST -----------------
                 
-                AppWindow mw = new AppWindow();
-        		mw.setVisible(true);
+//                AppWindow mw = new AppWindow();
+//        		mw.setVisible(true);
             }
         });
     }
