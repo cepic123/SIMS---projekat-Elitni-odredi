@@ -11,12 +11,18 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class NavigationPanel extends JPanel {
-	private JButton newsFeedButton;
-	private JButton searchButton;
-	private JButton profileButton;
-	private JButton logOutButton;
+	private JButton firstButton;
+	private JButton secondButton;
+	private JButton thirdButton;
+	private JButton fourthButton;
 	
-	public NavigationPanel() {
+	public NavigationPanel(String first_buttonS, String second_buttonS, String third_buttonS, 
+			String fourth_buttonS) {
+		
+		firstButton = new JButton(first_buttonS); //newsf
+		secondButton = new JButton(second_buttonS); //searc
+		thirdButton = new JButton(third_buttonS); //profile
+		fourthButton = new JButton(fourth_buttonS); //logout
 		
 		setPreferredSize(new Dimension(200,500));
 		initComponents();
@@ -25,15 +31,12 @@ public class NavigationPanel extends JPanel {
 	
 	private void initComponents() {
 		
-		newsFeedButton = new JButton("Pocetna strana");
-		searchButton = new JButton("Pretraga");
-		profileButton = new JButton("Moj profil");
-		logOutButton = new JButton("Odjavi se");
 		
-		newsFeedButton.setMaximumSize(new Dimension(200,50));
-		searchButton.setMaximumSize(new Dimension(200,50));
-		profileButton.setMaximumSize(new Dimension(200,50));
-		logOutButton.setMaximumSize(new Dimension(200,50));
+		
+		firstButton.setMaximumSize(new Dimension(200,50));
+		secondButton.setMaximumSize(new Dimension(200,50));
+		thirdButton.setMaximumSize(new Dimension(200,50));
+		fourthButton.setMaximumSize(new Dimension(200,50));
 		
 		Color lighterOrange = new Color(252, 223, 202);
 		Color lightOrange   = new Color(255, 166, 111);
@@ -43,56 +46,58 @@ public class NavigationPanel extends JPanel {
 		
 		setBackground(lighterOrange);
 		
-		newsFeedButton.setBackground(Color.WHITE);
+		firstButton.setBackground(Color.WHITE);
 //		newsFeedButton.setForeground(lightOrange);
 		
-		searchButton.setBackground(Color.WHITE);
-		searchButton.setBorder(buttonBorder);
-		profileButton.setBackground(Color.WHITE);
-		profileButton.setBorder(buttonBorder);
-		logOutButton.setBackground(Color.WHITE);
-		logOutButton.setBorder(buttonBorder);
+		secondButton.setBackground(Color.WHITE);
+		secondButton.setBorder(buttonBorder);
+		thirdButton.setBackground(Color.WHITE);
+		thirdButton.setBorder(buttonBorder);
+		fourthButton.setBackground(Color.WHITE);
+		fourthButton.setBorder(buttonBorder);
 		
 		BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
 		setLayout(boxLayout);
 		
-		add(newsFeedButton);
-		add(searchButton);
-		add(profileButton);
+		add(firstButton);
+		add(secondButton);
+		add(thirdButton);
 		add(Box.createRigidArea(new Dimension(0, 360)));
-		add(logOutButton);
+		add(fourthButton);
 		
 	}
 
-	public JButton getNewsFeedButton() {
-		return newsFeedButton;
+	public JButton getFirstButton() {
+		return firstButton;
 	}
 
-	public void setNewsFeedButton(JButton newsFeedButton) {
-		this.newsFeedButton = newsFeedButton;
+	public void setFirstButton(JButton firstButton) {
+		this.firstButton = firstButton;
 	}
 
-	public JButton getSearchButton() {
-		return searchButton;
+	public JButton getSecondButton() {
+		return secondButton;
 	}
 
-	public void setSearchButton(JButton searchButton) {
-		this.searchButton = searchButton;
+	public void setSecondButton(JButton secondButton) {
+		this.secondButton = secondButton;
 	}
 
-	public JButton getProfileButton() {
-		return profileButton;
+	public JButton getThirdButton() {
+		return thirdButton;
 	}
 
-	public void setProfileButton(JButton profileButton) {
-		this.profileButton = profileButton;
+	public void setThirdButton(JButton thirdButton) {
+		this.thirdButton = thirdButton;
 	}
 
-	public JButton getLogOutButton() {
-		return logOutButton;
+	public JButton getFourthButton() {
+		return fourthButton;
 	}
 
-	public void setLogOutButton(JButton logOutButton) {
-		this.logOutButton = logOutButton;
+	public void setFourthButton(JButton fourthButton) {
+		this.fourthButton = fourthButton;
 	}
+
+	
 }
