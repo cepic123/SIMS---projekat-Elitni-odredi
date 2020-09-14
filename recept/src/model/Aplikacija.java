@@ -92,7 +92,7 @@ public class Aplikacija {
 					Kolicina k = new Kolicina(Integer.parseInt(sastavci[2]),s);
 					sas.add(k);
 				}
-				Recept vrati = new Recept(delovi[0],delovi[1],Integer.parseInt(delovi[2]),delovi[3],sas);
+				Recept vrati = new Recept(delovi[0],delovi[1],Integer.parseInt(delovi[2]),delovi[3],sas,delovi[5]);
 				this.recepti.add(vrati);
 			}
 			br.close();
@@ -154,4 +154,13 @@ public class Aplikacija {
 		return false;
 	}
 	
+	public ArrayList<Recept> nadjiRecepteKorisnikove(Korisnik korisnik){
+		ArrayList<Recept> receptiKorisnika = new ArrayList<Recept>();
+		for(Recept recept : recepti) {
+			if(recept.autor.equals(korisnik.username)) {
+				receptiKorisnika.add(recept);
+			}
+		}
+		return receptiKorisnika;
+	}
 }

@@ -60,6 +60,7 @@ public class AppWindow extends JFrame implements ActionListener {
 		} else  {
 			//odloguj se
 			return new JPanel();
+			
 		}
 	}
 
@@ -81,6 +82,10 @@ public class AppWindow extends JFrame implements ActionListener {
 			changePanel(currentPanel, search);
 			navigationBar.getSecondButton().setForeground(lightOrange);
 			current = 2;
+		}else if(clicked == navigationBar.getFourthButton()) {
+			MainWindow mw = new MainWindow();
+     		mw.setVisible(true);
+     		dispose();
 		}
 	}
 	
