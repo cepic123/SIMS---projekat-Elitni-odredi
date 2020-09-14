@@ -346,6 +346,7 @@ public class main extends javax.swing.JFrame {
 //    	System.out.println(jTextField6.getText());
 //    	System.out.println(jTextField7.getText());
     	aplikacija.registrujKorisnika(jTextField4.getText(),jTextField3.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText());
+    	jButton2.doClick();
     }//GEN-LAST:event_jButton5ActionPerformed
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 //    	System.out.println(jTextField4.getText());
