@@ -17,6 +17,7 @@ import view.AppWindow;
  * @author Petar
  */
 public class main extends javax.swing.JFrame {
+	static Aplikacija aplikacija = new Aplikacija("Naziv","domen",new ArrayList<Korisnik>(), new ArrayList<Recept>());
 
     /**
      * Creates new form main
@@ -333,18 +334,18 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    	System.out.println(jTextField4.getText());
-    	System.out.println(jTextField3.getText());
-    	System.out.println(jTextField5.getText());
-    	System.out.println(jTextField6.getText());
-    	System.out.println(jTextField7.getText());
+//    	System.out.println(jTextField4.getText());
+//    	System.out.println(jTextField3.getText());
+//    	System.out.println(jTextField5.getText());
+//    	System.out.println(jTextField6.getText());
+//    	System.out.println(jTextField7.getText());
+    	aplikacija.registrujKorisnika(jTextField4.getText(),jTextField3.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    	Aplikacija aplikacija = new Aplikacija("Naziv","domen",new ArrayList<Korisnik>(), new ArrayList<Recept>());
     	aplikacija.napuniKorisnike();
     	aplikacija.napuniRecepte();
         /* Set the Nimbus look and feel */
