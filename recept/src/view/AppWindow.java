@@ -10,9 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import model.Korisnik;
+import model.*;
 
 public class AppWindow extends JFrame implements ActionListener {
 	
+
+	
+	Korisnik korisnik;
 	private NavigationPanel navigationBar = new NavigationPanel();
 	private NewsFeed newsFeed = new NewsFeed();
 	private UserProfile userProfile = new UserProfile();
@@ -21,16 +26,16 @@ public class AppWindow extends JFrame implements ActionListener {
 	private JScrollPane scroll;
 	private Color lightOrange   = new Color(255, 166, 111);
 	
-	public AppWindow() {
-		
+	public AppWindow(Korisnik korisnik) {
+		this.korisnik = korisnik;
 		setSize(1000,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		scroll = new JScrollPane(newsFeed);
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
-		
-		current = 0; //0 je newsfeed
+		userProfile.setData(korisnik);
+		current = 2; //0 je newsfeed
 		
 		
 		navigationBar.getNewsFeedButton().setForeground(lightOrange);

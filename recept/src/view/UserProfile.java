@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import model.*;
 
 public class UserProfile extends JPanel implements ActionListener{
 	private ImageHolder image;
@@ -28,10 +29,13 @@ public class UserProfile extends JPanel implements ActionListener{
 	private JButton updateRecipe;
 	private JButton deleteRecipe;
 	
+	
+	
 	public UserProfile() {
 		
 		initComponents();
 	}
+	
 	
 	private void initComponents() {
 		
@@ -58,7 +62,7 @@ public class UserProfile extends JPanel implements ActionListener{
 	    
 	    tableOfRecipes = new RecipesTable();
 	    
-	    setData();
+	    
 	    manageLayout();
 	    
 	    setActionListeners();
@@ -159,11 +163,11 @@ public class UserProfile extends JPanel implements ActionListener{
 //		deleteRecipe = new JButton("Obrisi recept");
 	}
 	
-	private void setData() {
+	void setData(Korisnik korisnik) {
 		//prosledjivanje strukture podataka tipa Korisnik i uzimanje podataka 
-		username.setText("Peki");
-		fullName.setText("Zokijev Tigar");
-		password.setText("tanjasavicjeekstra");
+		username.setText(korisnik.getUsername());
+		fullName.setText(korisnik.getIme()+" "+korisnik.getPrezime());
+		password.setText(korisnik.getPassword());
 	}
 
 	@Override

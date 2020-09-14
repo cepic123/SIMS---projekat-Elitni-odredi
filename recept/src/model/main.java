@@ -1,7 +1,9 @@
+package model;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.AppWindow;
@@ -175,7 +177,11 @@ public class main extends javax.swing.JFrame {
         jTextField2.setToolTipText("");
 
         jButton4.setText("Potvrda");
-
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         javax.swing.GroupLayout pnlCard2Layout = new javax.swing.GroupLayout(pnlCard2);
         pnlCard2.setLayout(pnlCard2Layout);
         pnlCard2Layout.setHorizontalGroup(
@@ -341,7 +347,20 @@ public class main extends javax.swing.JFrame {
 //    	System.out.println(jTextField7.getText());
     	aplikacija.registrujKorisnika(jTextField4.getText(),jTextField3.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText());
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+//    	System.out.println(jTextField4.getText());
+//    	System.out.println(jTextField3.getText());
+//    	System.out.println(jTextField5.getText());
+//    	System.out.println(jTextField6.getText());
+//    	System.out.println(jTextField7.getText());
+    	if(aplikacija.ulogujSe(jTextField1.getText(),jTextField2.getText()) == true) {
+    	//	JOptionPane.showInternalMessageDialog(,"Uspesno ste se ulogovali u ");
+    		 AppWindow mw = new AppWindow(aplikacija.ulogovan);
+      		 mw.setVisible(true);
+      		 dispose();
+    	}
+    	
+    }
     /**
      * @param args the command line arguments
      */

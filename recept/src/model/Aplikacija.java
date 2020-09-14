@@ -1,3 +1,4 @@
+package model;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,11 +7,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class Aplikacija {
 	String imeAplikacije;
 	String domenAplikacije;
 	ArrayList<Recept> recepti;
 	ArrayList<Korisnik> korisnici;
+	Korisnik ulogovan;
 	
 	public Aplikacija(String imeAplikacije, String domenAplikacije, ArrayList<Korisnik> korisnici,
 			ArrayList<Recept> recepti) {
@@ -129,6 +133,18 @@ public class Aplikacija {
 			e.printStackTrace();
 			return;
 		}
+	}
+	public boolean ulogujSe(String text, String text2) {
+		// TODO Auto-generated method stub
+		for(Korisnik korisnik: korisnici) {
+			if(korisnik.username.equals(text) && korisnik.password.equals(text2)) {
+				System.out.println("Ulogovan si");
+				ulogovan = korisnik;
+				return true;
+			}
+		}
+		System.out.println("Nisi ulogovan");
+		return false;
 	}
 	
 }

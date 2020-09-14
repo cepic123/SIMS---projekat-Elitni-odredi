@@ -1,3 +1,5 @@
+package model;
+
 public class Sastojak {
 	public Sastojak(String ime, TipSastojka tip) {
 		super();
