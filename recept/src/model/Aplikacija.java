@@ -48,6 +48,13 @@ public class Aplikacija {
 	public void setKorisnici(ArrayList<Korisnik> korisnici) {
 		this.korisnici = korisnici;
 	}
+	
+	public Korisnik getUlogovan() {
+		return ulogovan;
+	}
+	public void setUlogovan(Korisnik ulogovan) {
+		this.ulogovan = ulogovan;
+	}
 	public void napuniKorisnike() {
 		// TODO Auto-generated method stub
 		try {

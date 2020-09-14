@@ -86,9 +86,16 @@ public class MainWindow extends JFrame implements ActionListener {
 			changePanel(currentPanel, loginPanel);
 			current = 2;
 		} else if(clicked == loginPanel.getSubmit()) {
-			//provera za logovanje
+			if(aplikacija.ulogujSe(loginPanel.getUsername().getText(),loginPanel.getPassword().getText()) == true) {
+		    	//	JOptionPane.showInternalMessageDialog(,"Uspesno ste se ulogovali u ");
+		    		 AppWindow mw = new AppWindow(aplikacija.getUlogovan());
+		      		 mw.setVisible(true);
+		      		 dispose();
+		    	}
 		} else if(clicked == registrationPanel.getSubmit()) {
-			//registracija
+			aplikacija.registrujKorisnika(registrationPanel.getSurname().getText(),registrationPanel.getUName().getText(),registrationPanel.getUsername().getText(),registrationPanel.getPassword().getText(),registrationPanel.getEmail().getText());
+			changePanel(currentPanel, loginPanel);
+			current = 2;
 		}
 		
 		else {
