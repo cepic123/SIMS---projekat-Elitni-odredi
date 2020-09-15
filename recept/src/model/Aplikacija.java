@@ -147,6 +147,7 @@ public class Aplikacija {
 			if(korisnik.username.equals(text) && korisnik.password.equals(text2)) {
 				System.out.println("Ulogovan si");
 				ulogovan = korisnik;
+				ulogovan.setMojiRecepti(nadjiRecepteKorisnikove(korisnik));
 				return true;
 			}
 		}

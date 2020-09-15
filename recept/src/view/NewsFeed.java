@@ -1,31 +1,36 @@
 package view;
 
+
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 
+import model.*;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import controler.*;
 
 public class NewsFeed extends JPanel {
 	JButton addRecipe;
 	private ArrayList<RecipePanel> recipes;
 	private JButton next;
-	
+	private ReceptiNewsFeed rc = new ReceptiNewsFeed(new ArrayList<Recept>());
 	public NewsFeed() {
-		
 		initComponents();
-		
+	
 	}
 	
 	private void initComponents() {
+		rc.napuniRecepte();	
+
 		recipes = new ArrayList<RecipePanel>();
 		next = new JButton("Sledeca strana");
 		
-		for(int i = 0; i < 4; i++) {
-			recipes.add(new RecipePanel());
+		for(int i = 0; i < rc.getRecepti().size(); i++) {
+			RecipePanel rp = new RecipePanel();
+			recipes.add(rp);
 		}
 		
 		addRecipe = new JButton("Dodaj recept");
@@ -64,11 +69,13 @@ public class NewsFeed extends JPanel {
 	    gbc.gridx = 0;
 	    gbc.gridy = 5;
 	    add(next, gbc);
+	    
+	    setData();
 	}
 	
 	private void setData() {
 		for(int i = 0; i < recipes.size(); i++) {
-			recipes.get(i).setData();
+			recipes.get(i).setData(rc.getRecepti().get(i));
 		}
 	}
 }

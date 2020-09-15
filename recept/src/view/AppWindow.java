@@ -34,6 +34,7 @@ public class AppWindow extends JFrame implements ActionListener {
 		scroll = new JScrollPane(newsFeed);
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
 		userProfile.setData(korisnik);
+		userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
 		current = 0; //0 je newsfeed
 		
 		

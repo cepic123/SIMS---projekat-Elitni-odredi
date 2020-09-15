@@ -24,7 +24,7 @@ public class UserProfile extends JPanel implements ActionListener{
 	private JButton changePhoto;
 	private JButton changeInfo;
 	private JButton applyChange;
-	private RecipesTable tableOfRecipes;
+	RecipesTable tableOfRecipes;
 	private JButton createRecipe;
 	private JButton updateRecipe;
 	private JButton deleteRecipe;
@@ -62,7 +62,6 @@ public class UserProfile extends JPanel implements ActionListener{
 	    
 	    tableOfRecipes = new RecipesTable();
 	    
-	    
 	    manageLayout();
 	    
 	    setActionListeners();
@@ -82,7 +81,6 @@ public class UserProfile extends JPanel implements ActionListener{
 	    
 	    JScrollPane scrollPane = new JScrollPane(tableOfRecipes);
 	    scrollPane.setPreferredSize(new Dimension(700,200));
-	    
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 		GridBagConstraints gbc = new GridBagConstraints();

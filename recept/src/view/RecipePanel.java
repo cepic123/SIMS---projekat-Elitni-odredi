@@ -1,9 +1,13 @@
 package view;
 
+import controler.*;
+import model.Recept;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -36,9 +40,7 @@ public class RecipePanel extends JPanel {
 		recipeDescription = new JLabel();
 		detailsButton = new JButton("Detaljnije");
 		ri = new ImageHolder();
-		
-		setData();
-		
+				
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -71,17 +73,13 @@ public class RecipePanel extends JPanel {
 	    
 	}
 	
-	public void setData() {
+	public void setData(Recept recept) {
 		//Kontam da ovde prosledis neku strukturu podataka tipa Recept pa da izvlacis iz njega podatke, a ovo je samo primer
-		
-		username.setText("makica123");
-		recipeName.setText("Pasta Bolonjeze");
-		recipeDescription.setText("<html>"+ "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-				+ "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
-				+ "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
-				+ "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " +"</html>");
+		username.setText(recept.getAutor());
+		recipeName.setText(recept.getNaziv());
+		recipeDescription.setText(recept.getUputstvo());
 		recipeDescription.setPreferredSize(new Dimension(400,100));
-		ri.setImage("images/recept1.jpg");
+		ri.setImage(recept.getUrlSlike());
 	}
 
 }
