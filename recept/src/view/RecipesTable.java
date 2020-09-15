@@ -36,6 +36,7 @@ public class RecipesTable extends JTable{
 //	    }
 //	}
 	 void setData(ArrayList<Recept> recepti) {
+		 System.out.println("WTF");
 		 String columns[]={"Autor","Naziv","Vreme pripreme","Opis","Detaljnije"};
 		 Object[][] data = new Object[recepti.size()][5];
 		 int i = 0;

@@ -28,6 +28,8 @@ public class MainWindow extends JFrame implements ActionListener {
 	static Aplikacija aplikacija = new Aplikacija("Naziv","domen",new ArrayList<Korisnik>(), new ArrayList<Recept>());
 	
 	public MainWindow() {
+		aplikacija.getRecepti().clear();
+		aplikacija.getKorisnici().clear();
 		aplikacija.napuniKorisnike();
 		aplikacija.napuniRecepte();
 		initComponents();

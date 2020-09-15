@@ -80,7 +80,6 @@ public class Aplikacija {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("recepti.txt"));
 			String current;
-			
 			while((current = br.readLine()) != null) {
 				String[] delovi = current.split("-");
 				String[] sastojci = delovi[4].split("/");
@@ -157,11 +156,13 @@ public class Aplikacija {
 	
 	public ArrayList<Recept> nadjiRecepteKorisnikove(Korisnik korisnik){
 		ArrayList<Recept> receptiKorisnika = new ArrayList<Recept>();
+		System.out.println(recepti.size());
 		for(Recept recept : recepti) {
 			if(recept.autor.equals(korisnik.username)) {
 				receptiKorisnika.add(recept);
 			}
-		}
+		}		
+
 		return receptiKorisnika;
 	}
 }
