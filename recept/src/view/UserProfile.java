@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import controler.Azuriranje;
 import model.*;
 
 public class UserProfile extends JPanel implements ActionListener{
@@ -28,7 +31,7 @@ public class UserProfile extends JPanel implements ActionListener{
 	private JButton createRecipe;
 	private JButton updateRecipe;
 	private JButton deleteRecipe;
-	
+	private Azuriranje az = new Azuriranje(new ArrayList<Korisnik>());
 	
 	
 	public UserProfile() {
@@ -173,13 +176,16 @@ public class UserProfile extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		JButton clicked = (JButton)e.getSource();
 		if(clicked == changeInfo) {
-			username.setEditable(true);
+			username.setEditable(false);
 		    fullName.setEditable(true);
 		    password.setEditable(true);
 		} else if(clicked == applyChange) {
 			username.setEditable(false);
 		    fullName.setEditable(false);
 		    password.setEditable(false);
+		    az.napuniKorisnike();
+		    az.izmeniKorisnika(username.getText(), password.getText(), fullName.getText());
+		    
 		}
 		
 	}
