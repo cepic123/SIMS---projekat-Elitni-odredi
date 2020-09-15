@@ -1,17 +1,17 @@
 package view;
 
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import model.Korisnik;
-import model.*;
 
 public class AppWindow extends JFrame implements ActionListener {
 	
@@ -24,6 +24,7 @@ public class AppWindow extends JFrame implements ActionListener {
 	private int current;
 	private JScrollPane scroll;
 	private Color lightOrange   = new Color(255, 166, 111);
+	private AddRecipe addRecipe;
 	
 	public AppWindow(Korisnik korisnik) {
 		this.korisnik = korisnik;
@@ -37,6 +38,9 @@ public class AppWindow extends JFrame implements ActionListener {
 		userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
 		current = 0; //0 je newsfeed
 		
+		addRecipe = new AddRecipe();
+		
+		
 		
 		navigationBar.getFirstButton().setForeground(lightOrange);
 		add(navigationBar, BorderLayout.WEST);
@@ -46,6 +50,9 @@ public class AppWindow extends JFrame implements ActionListener {
 		navigationBar.getSecondButton().addActionListener(this);
 		navigationBar.getThirdButton().addActionListener(this);
 		navigationBar.getFourthButton().addActionListener(this);
+		newsFeed.getAddRecipe().addActionListener(this);
+		userProfile.getCreateRecipe().addActionListener(this);
+		userProfile.getUpdateRecipe().addActionListener(this);
 	}
 	
 	private JPanel getCurrentComponent() {
@@ -87,6 +94,26 @@ public class AppWindow extends JFrame implements ActionListener {
 			MainWindow mw = new MainWindow();
      		mw.setVisible(true);
      		dispose();
+		} else if(clicked == newsFeed.getAddRecipe()) {
+			//iskoci dijalog
+			 JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
+		} else if(clicked == userProfile.getCreateRecipe()) {
+			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
+		} else if(clicked == userProfile.getUpdateRecipe()) {
+			//check if row is selected
+			updateRecipe();
+		}
+	}
+	
+	private void updateRecipe() {
+		if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
+			return;
+		} else {
+			//TO DO - staviti info
+			addRecipe.getRecipeName().setText("naziv");
+			addRecipe.getDescription().setText("kuvaj levo kuvaj desno");
+			addRecipe.getImageUrl().setText("slika.jpg");
+			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	

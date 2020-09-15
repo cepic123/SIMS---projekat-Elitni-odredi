@@ -189,7 +189,127 @@ public class UserProfile extends JPanel implements ActionListener{
 		}
 		
 	}
+
+
+	public ImageHolder getImage() {
+		return image;
+	}
+
+
+	public void setImage(ImageHolder image) {
+		this.image = image;
+	}
+
+
+	public JTextField getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(JTextField username) {
+		this.username = username;
+	}
+
+
+	public JTextField getFullName() {
+		return fullName;
+	}
+
+
+	public void setFullName(JTextField fullName) {
+		this.fullName = fullName;
+	}
+
+
+	public JPasswordField getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(JPasswordField password) {
+		this.password = password;
+	}
+
+
+	public JButton getChangePhoto() {
+		return changePhoto;
+	}
+
+
+	public void setChangePhoto(JButton changePhoto) {
+		this.changePhoto = changePhoto;
+	}
+
+
+	public JButton getChangeInfo() {
+		return changeInfo;
+	}
+
+
+	public void setChangeInfo(JButton changeInfo) {
+		this.changeInfo = changeInfo;
+	}
+
+
+	public JButton getApplyChange() {
+		return applyChange;
+	}
+
+
+	public void setApplyChange(JButton applyChange) {
+		this.applyChange = applyChange;
+	}
+
+
+	public RecipesTable getTableOfRecipes() {
+		return tableOfRecipes;
+	}
+
+
+	public void setTableOfRecipes(RecipesTable tableOfRecipes) {
+		this.tableOfRecipes = tableOfRecipes;
+	}
+
+
+	public JButton getCreateRecipe() {
+		return createRecipe;
+	}
+
+
+	public void setCreateRecipe(JButton createRecipe) {
+		this.createRecipe = createRecipe;
+	}
+
+
+	public JButton getUpdateRecipe() {
+		return updateRecipe;
+	}
+
+
+	public void setUpdateRecipe(JButton updateRecipe) {
+		this.updateRecipe = updateRecipe;
+	}
+
+
+	public JButton getDeleteRecipe() {
+		return deleteRecipe;
+	}
+
+
+	public void setDeleteRecipe(JButton deleteRecipe) {
+		this.deleteRecipe = deleteRecipe;
+	}
+
+	public Azuriranje getAz() {
+		return az;
+	}
+
+
+	public void setAz(Azuriranje az) {
+		this.az = az;
+	}
 	
 	// TO DO 
 	//Dodati action listener kad klikne na promeni podatke da setEditable bude true
+	
 }

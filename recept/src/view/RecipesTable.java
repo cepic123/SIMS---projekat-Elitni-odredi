@@ -21,6 +21,7 @@ public class RecipesTable extends JTable{
 		Object[][] data = {};
 
         DefaultTableModel model = new DefaultTableModel(data, columns);
+//        setEnabled(false);
         this.setModel(model);
         
 	}

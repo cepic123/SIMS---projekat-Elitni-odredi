@@ -78,5 +78,39 @@ public class NewsFeed extends JPanel {
 			recipes.get(i).setData(rc.getRecepti().get(i));
 		}
 	}
+
+	public JButton getAddRecipe() {
+		return addRecipe;
+	}
+
+	public void setAddRecipe(JButton addRecipe) {
+		this.addRecipe = addRecipe;
+	}
+
+	public ArrayList<RecipePanel> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(ArrayList<RecipePanel> recipes) {
+		this.recipes = recipes;
+	}
+
+	public JButton getNext() {
+		return next;
+	}
+
+	public void setNext(JButton next) {
+		this.next = next;
+	}
+
+	public ReceptiNewsFeed getRc() {
+		return rc;
+	}
+
+	public void setRc(ReceptiNewsFeed rc) {
+		this.rc = rc;
+	}
+	
+	
 }
 
