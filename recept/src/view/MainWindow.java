@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -94,12 +95,17 @@ public class MainWindow extends JFrame implements ActionListener {
 			
 			if(aplikacija.ulogujSe(loginPanel.getUsername().getText(),loginPanel.getPassword().getText()) == true) {
 		    	//	JOptionPane.showInternalMessageDialog(,"Uspesno ste se ulogovali u ");
-		    		 AppWindow mw = new AppWindow(aplikacija.getUlogovan());
+					 JOptionPane.showMessageDialog(this, "Uspesan login");
+					 AppWindow mw = new AppWindow(aplikacija.getUlogovan());
 		      		 mw.setVisible(true);
 		      		 dispose();
-		    	}
+		      		 
+					}else {
+					 JOptionPane.showMessageDialog(this, "Neuspesan login");
+					}
 		} else if(clicked == registrationPanel.getSubmit()) {
 			aplikacija.registrujKorisnika(registrationPanel.getUName().getText(),registrationPanel.getSurname().getText(),registrationPanel.getUsername().getText(),registrationPanel.getPassword().getText(),registrationPanel.getEmail().getText());
+			JOptionPane.showMessageDialog(this, "Uspesna registracija");
 			changePanel(currentPanel, loginPanel);
 			current = 2;
 		}

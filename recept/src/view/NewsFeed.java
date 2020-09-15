@@ -49,26 +49,33 @@ public class NewsFeed extends JPanel {
 	    add(addRecipe, gbc);
 	    gbc.insets = new Insets(20,0,0,0);
 	    
-		gbc.gridx = 0;
-	    gbc.gridy = 1;
-	    gbc.gridwidth = 2;
-	    add(recipes.get(0), gbc);
+//		gbc.gridx = 0;
+//	    gbc.gridy = 1;
+//	    gbc.gridwidth = 2;
+//	    add(recipes.get(0), gbc);
+//	    
+//	    gbc.gridx = 0;
+//	    gbc.gridy = 2;
+//	    add(recipes.get(1), gbc);
+//	    
+//	    gbc.gridx = 0;
+//	    gbc.gridy = 3;
+//	    add(recipes.get(2), gbc);
+//	    
+//	    gbc.gridx = 0;
+//	    gbc.gridy = 4;
+//	    add(recipes.get(3), gbc);
+//	    
+//	    gbc.gridx = 0;
+//	    gbc.gridy = 5;
+//	    add(next, gbc);
+	    for(int i=0;i<recipes.size();i++) {
+	    	gbc.gridx = 0;
+		    gbc.gridy = i+1;
+		    gbc.gridwidth = 2;
+		    add(recipes.get(i), gbc);
+	    }
 	    
-	    gbc.gridx = 0;
-	    gbc.gridy = 2;
-	    add(recipes.get(1), gbc);
-	    
-	    gbc.gridx = 0;
-	    gbc.gridy = 3;
-	    add(recipes.get(2), gbc);
-	    
-	    gbc.gridx = 0;
-	    gbc.gridy = 4;
-	    add(recipes.get(3), gbc);
-	    
-	    gbc.gridx = 0;
-	    gbc.gridy = 5;
-	    add(next, gbc);
 	    
 	    setData();
 	}

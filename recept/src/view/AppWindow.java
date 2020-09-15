@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controler.AddRecipec;
 import model.Korisnik;
+import model.Recept;
 
 public class AppWindow extends JFrame implements ActionListener {
 	
@@ -25,9 +28,15 @@ public class AppWindow extends JFrame implements ActionListener {
 	private JScrollPane scroll;
 	private Color lightOrange   = new Color(255, 166, 111);
 	private AddRecipe addRecipe;
+	ArrayList<Recept> recepti = new ArrayList<Recept>();
+
+	AddRecipec rc = new AddRecipec(recepti); 
+
 	
 	public AppWindow(Korisnik korisnik) {
 		this.korisnik = korisnik;
+		 rc.napuniRecepte();
+
 		setSize(1000,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -97,8 +106,12 @@ public class AppWindow extends JFrame implements ActionListener {
 		} else if(clicked == newsFeed.getAddRecipe()) {
 			//iskoci dijalog
 			 JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
+			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
+			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
 		} else if(clicked == userProfile.getCreateRecipe()) {
 			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
+			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
+			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
 		} else if(clicked == userProfile.getUpdateRecipe()) {
 			//check if row is selected
 			updateRecipe();

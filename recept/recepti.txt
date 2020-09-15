@@ -1,4 +1,8 @@
-pasta suta-skuvati levo desno-30-maka-jaja,aldente,100/meso,mleveno,900-images/recept1.jpg
-pasta suta-skuvati levo desno-30-cepsta-jaja,aldente,100/meso,mleveno,900-images/hqdefault.jpg
-omlet-smuckati i ispeci-5-cepsta-jaja,jaja,100,900-images/photo.jpg
-pica-ispeci u rerni-15-cepsta-jaja,jaja,100/meso,mleveno,900/ostalo,sir,300-images/120607_pica_ls.jpg
+naziv-cepsta-opis-0-images/photo.jpg
+naziv-cepsta-opis-0-images/photo.jpg
+bolonjeze-cepsta-Opis opis opis-0-images/recept1.jpg
+naziv-cepsta-opis-0-images/photo.jpg
+naziv-cepsta-opis-0-images/photo.jpg
+pica-maka-PAPD PADP PADPAP DPAP D-0-images/120607_pica_ls.jpg
+mleveno meso-maka- hqdefault.jpg hqdefault.jpghqdefault.jpg hqdefault.jpg hqdefault.jpghqdefault.jpg-0-images/hqdefault.jpg
+ccacaca-maka-caopaofijaf-0-cacaca

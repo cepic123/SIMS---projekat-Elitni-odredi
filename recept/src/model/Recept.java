@@ -11,14 +11,22 @@ public class Recept {
 	ArrayList<KuhinjskaOprema> oprema;
 	ArrayList<Kolicina> sastojci;
 	String urlSlike;
-	public Recept(String naziv,String uputstvo, Integer vremePripreme, String autor, ArrayList<Kolicina> sastojci, String url) {
+	public Recept(String naziv,String uputstvo, Integer vremePripreme, String autor, String url) {
 		super();
 		this.naziv = naziv;
 		this.uputstvo = uputstvo;
 		this.vremePripreme = vremePripreme;
 		this.autor = autor;
-		this.sastojci = sastojci;
 		this.urlSlike = url;
+	}
+
+	public Recept(String naziv, String autor,String uputstvo,Integer vreme , String urlSlike) {
+		super();
+		this.naziv = naziv;
+		this.uputstvo = uputstvo;
+		this.autor = autor;
+		this.vremePripreme = vreme;
+		this.urlSlike = urlSlike;
 	}
 	public String getNaziv() {
 		return naziv;
