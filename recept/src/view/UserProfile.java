@@ -32,10 +32,10 @@ public class UserProfile extends JPanel implements ActionListener{
 	private JButton updateRecipe;
 	private JButton deleteRecipe;
 	private Azuriranje az = new Azuriranje(new ArrayList<Korisnik>());
+	private Aplikacija aplikacija;
 	
-	
-	public UserProfile() {
-		
+	public UserProfile(Aplikacija aplikacija) {
+		this.aplikacija = aplikacija;
 		initComponents();
 	}
 	
@@ -63,7 +63,7 @@ public class UserProfile extends JPanel implements ActionListener{
 	    changeInfo = new JButton("Promeni podatke");
 	    applyChange = new JButton("Sacuvaj promene");
 	    
-	    tableOfRecipes = new RecipesTable();
+	    tableOfRecipes = new RecipesTable(aplikacija);
 	    
 	    manageLayout();
 	    
@@ -164,11 +164,11 @@ public class UserProfile extends JPanel implements ActionListener{
 //		deleteRecipe = new JButton("Obrisi recept");
 	}
 	
-	void setData(Korisnik korisnik) {
+	void setData() {
 		//prosledjivanje strukture podataka tipa Korisnik i uzimanje podataka 
-		username.setText(korisnik.getUsername());
-		fullName.setText(korisnik.getIme()+" "+korisnik.getPrezime());
-		password.setText(korisnik.getPassword());
+		username.setText(aplikacija.getUlogovan().getUsername());
+		fullName.setText(aplikacija.getUlogovan().getIme()+" "+aplikacija.getUlogovan().getPrezime());
+		password.setText(aplikacija.getUlogovan().getPassword());
 	}
 
 	@Override

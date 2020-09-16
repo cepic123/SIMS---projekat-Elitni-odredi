@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controller.Controller;
 import model.Aplikacija;
 import model.Korisnik;
 import model.Recept;
@@ -26,13 +27,16 @@ public class MainWindow extends JFrame implements ActionListener {
 	private int current;
 	private Color lightOrange   = new Color(255, 166, 111);
 	
-	static Aplikacija aplikacija = new Aplikacija("Naziv","domen",new ArrayList<Korisnik>(), new ArrayList<Recept>());
+	private Controller controller;
+	private Aplikacija aplikacija;
 	
-	public MainWindow() {
-		aplikacija.getRecepti().clear();
-		aplikacija.getKorisnici().clear();
-		aplikacija.napuniKorisnike();
-		aplikacija.napuniRecepte();
+	public MainWindow(Controller controller, Aplikacija aplikacija) {
+//		aplikacija.getRecepti().clear();
+//		aplikacija.getKorisnici().clear();
+//		aplikacija.napuniKorisnike();
+//		aplikacija.napuniRecepte();
+		this.controller = controller;
+		this.aplikacija = aplikacija;
 		initComponents();
 		
 	}
@@ -93,26 +97,42 @@ public class MainWindow extends JFrame implements ActionListener {
 			current = 2;
 		} else if(clicked == loginPanel.getSubmit()) {
 			
-			if(aplikacija.ulogujSe(loginPanel.getUsername().getText(),loginPanel.getPassword().getText()) == true) {
-		    	//	JOptionPane.showInternalMessageDialog(,"Uspesno ste se ulogovali u ");
-					 JOptionPane.showMessageDialog(this, "Uspesan login");
-					 AppWindow mw = new AppWindow(aplikacija.getUlogovan());
-		      		 mw.setVisible(true);
-		      		 dispose();
-		      		 
-					}else {
-					 JOptionPane.showMessageDialog(this, "Neuspesan login");
-					}
+//			if(aplikacija.ulogujSe(loginPanel.getUsername().getText(),loginPanel.getPassword().getText()) == true) {
+//		    	//	JOptionPane.showInternalMessageDialog(,"Uspesno ste se ulogovali u ");
+//					 JOptionPane.showMessageDialog(this, "Uspesan login");
+//					 AppWindow mw = new AppWindow(aplikacija.getUlogovan());
+//		      		 mw.setVisible(true);
+//		      		 dispose();
+//		      		 
+//					}else {
+//					 JOptionPane.showMessageDialog(this, "Neuspesan login");
+//					}
+			ulogujSe();
+			
 		} else if(clicked == registrationPanel.getSubmit()) {
-			aplikacija.registrujKorisnika(registrationPanel.getUName().getText(),registrationPanel.getSurname().getText(),registrationPanel.getUsername().getText(),registrationPanel.getPassword().getText(),registrationPanel.getEmail().getText());
 			JOptionPane.showMessageDialog(this, "Uspesna registracija");
 			changePanel(currentPanel, loginPanel);
 			current = 2;
+			registracija();
 		}
 		
 		else {
 			System.exit(0);
 		}
+	}
+	
+	private void registracija() {
+		try {
+			controller.registracija(registrationPanel.getUName().getText(),registrationPanel.getSurname().getText(),registrationPanel.getUsername().getText(),registrationPanel.getPassword().getText(),registrationPanel.getEmail().getText());
+		} catch(NullPointerException e) {
+			JOptionPane.showMessageDialog(this, "Nisu uneti svi parametri!", "Greska", JOptionPane.ERROR_MESSAGE);
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(this, "Korisnika nije moguce registrovati!", "Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	private void ulogujSe() {
+		//SEKA TO DO
 	}
 	
 	private void changePanel(JPanel current, JPanel panelToSet) {

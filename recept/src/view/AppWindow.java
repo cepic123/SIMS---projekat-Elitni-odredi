@@ -13,38 +13,40 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import controller.AddRecipec;
+import controller.Controller;
+import model.Aplikacija;
 import model.Korisnik;
 import model.Recept;
 
 public class AppWindow extends JFrame implements ActionListener {
 	
-	Korisnik korisnik;
 	private NavigationPanel navigationBar = new NavigationPanel("Pocetna strana",
 			"Pretraga","Moj profil","Odjavi se");
 	private NewsFeed newsFeed = new NewsFeed();
-	private UserProfile userProfile = new UserProfile();
-	private Search search = new Search();
+	private UserProfile userProfile;
+	private Search search;
 	private int current;
 	private JScrollPane scroll;
 	private Color lightOrange   = new Color(255, 166, 111);
 	private AddRecipe addRecipe;
-	ArrayList<Recept> recepti = new ArrayList<Recept>();
+	private Controller controller;
+	private Aplikacija aplikacija;
+//	ArrayList<Recept> recepti = new ArrayList<Recept>();
 
-	AddRecipec rc = new AddRecipec(recepti); 
-
-	
-	public AppWindow(Korisnik korisnik) {
-		this.korisnik = korisnik;
-		 rc.napuniRecepte();
-
+	public AppWindow(Aplikacija aplikacija, Controller controller) {
+		this.aplikacija = aplikacija;
+		this.controller = controller;
+//		 rc.napuniRecepte();
+		userProfile = new UserProfile(aplikacija);
+		search = new Search(aplikacija);
 		setSize(1000,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		scroll = new JScrollPane(newsFeed);
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
-		userProfile.setData(korisnik);
-		userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
+		userProfile.setData();
+		userProfile.getTableOfRecipes().setUserRecipes();
 		current = 0; //0 je newsfeed
 		
 		addRecipe = new AddRecipe();
@@ -100,34 +102,58 @@ public class AppWindow extends JFrame implements ActionListener {
 			navigationBar.getSecondButton().setForeground(lightOrange);
 			current = 2;
 		}else if(clicked == navigationBar.getFourthButton()) {
-			MainWindow mw = new MainWindow();
+			//e ovde nisam sig da li se stavlja new Controller() i new Aplikacija ili ne
+			Aplikacija newAplikacija = new Aplikacija("Naziv","domen",new ArrayList<Korisnik>(), new ArrayList<Recept>());
+			MainWindow mw = new MainWindow(new Controller(newAplikacija), newAplikacija);
      		mw.setVisible(true);
      		dispose();
 		} else if(clicked == newsFeed.getAddRecipe()) {
 			//iskoci dijalog
 			 JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
-			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
-			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
+//			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
+//			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
+			 
+			 // TO DO
+			 
+			 
+			 addRecipe();
+			 
 		} else if(clicked == userProfile.getCreateRecipe()) {
 			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
-			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
-			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
+//			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
+//			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
+			
+			addRecipe();
+			 
 		} else if(clicked == userProfile.getUpdateRecipe()) {
 			//check if row is selected
 			updateRecipe();
 		}
 	}
 	
+	private void addRecipe() {
+		
+		//try catch
+		//ovde proveriti da li su uneti podaci u dijalog...
+		 //u kontroleru dodati metodu za add recipe
+		// ja cu srediti refreshovanje viewa
+	}
+	
 	private void updateRecipe() {
-		if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
-			return;
-		} else {
-			//TO DO - staviti info
-			addRecipe.getRecipeName().setText("naziv");
-			addRecipe.getDescription().setText("kuvaj levo kuvaj desno");
-			addRecipe.getImageUrl().setText("slika.jpg");
-			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
+		try {
+			//controller 
+		} catch(Exception e) {
+			//izbaci dijalog il sta god...
 		}
+//		if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
+//			return;
+//		} else {
+//			//TO DO - staviti info
+//			addRecipe.getRecipeName().setText("naziv");
+//			addRecipe.getDescription().setText("kuvaj levo kuvaj desno");
+//			addRecipe.getImageUrl().setText("slika.jpg");
+//			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
+//		}
 	}
 	
 	private void changePanel(JPanel current, JPanel panelToSet) {
