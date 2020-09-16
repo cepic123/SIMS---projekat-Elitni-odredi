@@ -8,13 +8,14 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
+import model.Aplikacija;
 import model.Recept;
 
 public class RecipesTable extends JTable{
+	private Aplikacija aplikacija;
 	
-	
-	public RecipesTable() {
-		
+	public RecipesTable(Aplikacija aplikacija) {
+		this.aplikacija = aplikacija;
 		Border blackBorder = BorderFactory.createLineBorder(Color.black);
 		setBorder(blackBorder);
 		String columns[]={"Autor","Naziv","Vreme pripreme","Opis","Detaljnije"};
@@ -36,12 +37,11 @@ public class RecipesTable extends JTable{
 //	        matrix[i][j] = information;
 //	    }
 //	}
-	 void setData(ArrayList<Recept> recepti) {
-		 System.out.println("WTF");
+	 void setUserRecipes() {
 		 String columns[]={"Autor","Naziv","Vreme pripreme","Opis","Detaljnije"};
-		 Object[][] data = new Object[recepti.size()][5];
+		 Object[][] data = new Object[aplikacija.getUlogovan().getMojiRecepti().size()][5];
 		 int i = 0;
-		 for(Recept recept:recepti) {
+		 for(Recept recept:aplikacija.getUlogovan().getMojiRecepti()) {
 			 data[i][0] = recept.getAutor();
 			 data[i][1] = recept.getNaziv();
 			 data[i][2] = recept.getVremePripreme().toString();

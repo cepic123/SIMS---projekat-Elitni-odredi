@@ -14,8 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import controler.ZaSearch;
+import controller.ZaSearch;
 import model.Recept;
+import model.Aplikacija;
 
 public class Search extends JPanel implements ActionListener{
 	private JTextField recipeName;
@@ -23,14 +24,15 @@ public class Search extends JPanel implements ActionListener{
 	private JTextField time;
 	private JButton searchButton;
 	private RecipesTable tableOfRecipes;
-	private ZaSearch zaSearch = new ZaSearch(new ArrayList<Recept>());
-	public Search() {
-		
+	private Aplikacija aplikacija;
+	
+	public Search(Aplikacija aplikacija) {
+		this.aplikacija = aplikacija;
 		initComponents();
 	}
 	
 	private void initComponents() {
-		zaSearch.napuniRecepte();
+//		zaSearch.napuniRecepte();
 		JLabel recipeNameL = new JLabel("Naziv recepta:");
 		JLabel authorL = new JLabel("Autor:");
 		JLabel timeL = new JLabel("Vreme spremanja:");
@@ -42,7 +44,7 @@ public class Search extends JPanel implements ActionListener{
 		searchButton = new JButton("Pretrazi");
 		
 		
-		tableOfRecipes = new RecipesTable();
+		tableOfRecipes = new RecipesTable(aplikacija);
 		JScrollPane scrollPane = new JScrollPane(tableOfRecipes);
 	    scrollPane.setPreferredSize(new Dimension(700,400));
 		
@@ -100,7 +102,7 @@ public class Search extends JPanel implements ActionListener{
 		JButton clicked = (JButton)e.getSource();
 		if(clicked == searchButton) {
 			
-			tableOfRecipes.setData(zaSearch.nadjiRecepte(recipeName.getText(),Integer.parseInt(time.getText()),author.getText()));
+//			tableOfRecipes.setData(zaSearch.nadjiRecepte(recipeName.getText(),Integer.parseInt(time.getText()),author.getText()));
 		}
 		
 	}
