@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import controler.AddRecipec;
+import controller.AddRecipec;
 import model.Korisnik;
 import model.Recept;
 

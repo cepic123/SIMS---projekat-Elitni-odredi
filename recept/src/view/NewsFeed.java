@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import model.*;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import controler.*;
+
+import controller.*;
 
 public class NewsFeed extends JPanel {
 	JButton addRecipe;

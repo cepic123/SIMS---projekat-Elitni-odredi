@@ -16,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import controler.Azuriranje;
+import controller.Azuriranje;
 import model.*;
 
 public class UserProfile extends JPanel implements ActionListener{

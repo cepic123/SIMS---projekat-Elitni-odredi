@@ -18,33 +18,45 @@ public class Aplikacija {
 	
 	public Aplikacija(String imeAplikacije, String domenAplikacije, ArrayList<Korisnik> korisnici,
 			ArrayList<Recept> recepti) {
-		super();
+		
 		this.imeAplikacije = imeAplikacije;
 		this.domenAplikacije = domenAplikacije;
 		this.recepti = recepti;
 		this.korisnici = korisnici;
+		
+		napuniKorisnike();
+		napuniRecepte();
+		
 	}
+	
 	public String getImeAplikacije() {
 		return imeAplikacije;
 	}
+	
 	public void setImeAplikacije(String imeAplikacije) {
 		this.imeAplikacije = imeAplikacije;
 	}
+	
 	public String getDomenAplikacije() {
 		return domenAplikacije;
 	}
+	
 	public void setDomenAplikacije(String domenAplikacije) {
 		this.domenAplikacije = domenAplikacije;
 	}
+	
 	public ArrayList<Recept> getRecepti() {
 		return recepti;
 	}
+	
 	public void setRecepti(ArrayList<Recept> recepti) {
 		this.recepti = recepti;
 	}
+	
 	public ArrayList<Korisnik> getKorisnici() {
 		return korisnici;
 	}
+	
 	public void setKorisnici(ArrayList<Korisnik> korisnici) {
 		this.korisnici = korisnici;
 	}
@@ -52,9 +64,11 @@ public class Aplikacija {
 	public Korisnik getUlogovan() {
 		return ulogovan;
 	}
+	
 	public void setUlogovan(Korisnik ulogovan) {
 		this.ulogovan = ulogovan;
 	}
+	
 	public void napuniKorisnike() {
 		// TODO Auto-generated method stub
 		try {
@@ -94,6 +108,7 @@ public class Aplikacija {
 			
 		}
 	}
+	
 	public void registrujKorisnika(String string, String string2, String string3, String string4, String string5) {
 		// TODO Auto-generated method stub
 		// RECI MARKIZI I JELENI DA NAPRAVE OVE SMECE PROZORE I VRATITI NA REGISTRACIJU 

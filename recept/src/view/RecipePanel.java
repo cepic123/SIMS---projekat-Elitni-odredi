@@ -1,6 +1,5 @@
 package view;
 
-import controler.*;
 import model.Recept;
 
 import java.awt.Color;
@@ -14,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
+import controller.*;
 
 public class RecipePanel extends JPanel {
 	
