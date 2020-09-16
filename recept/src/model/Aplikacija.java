@@ -124,6 +124,60 @@ public class Aplikacija {
 		return true;
 	}
 	
+	public void dodajRecept(String naziv,String opis,String urlSlike,String autor) {
+		Recept novi = new Recept(naziv,autor,opis,0,urlSlike);
+		System.out.println(recepti);
+		recepti.add(novi);
+		try {
+			PrintWriter pw = new PrintWriter("recepti.txt");
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
+		try {
+			PrintWriter pw = new PrintWriter(new FileWriter("recepti.txt",true));
+			for (Recept artikal : recepti) {
+				System.out.println(artikal.getNaziv() +"-" +artikal.getAutor()+ "-"  + artikal.getUputstvo() + "-" +artikal.getVremePripreme().toString() + "-" + artikal.getUrlSlike());
+				pw.println(artikal.getNaziv() +"-" +artikal.getAutor()+ "-"  + artikal.getUputstvo() + "-" +artikal.getVremePripreme().toString() + "-" + artikal.getUrlSlike());
+			}
+			pw.close();
+			return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+}
+
+	public void updateRecept(String naziv, String opis, String imgUrl, String autor) {
+		// TODO Auto-generated method stub
+		for(Recept recept : recepti) {
+		if(autor.equals(recept.getAutor()) && naziv.equals(recept.getNaziv())) {
+			recept.setUputstvo(opis);
+			recept.setUrlSlike(imgUrl);
+		}
+		try {
+			PrintWriter pw = new PrintWriter("recepti.txt");
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
+		try {
+			PrintWriter pw = new PrintWriter(new FileWriter("recepti.txt",true));
+			for (Recept artikal : recepti) {
+				System.out.println(artikal.getNaziv() +"-" +artikal.getAutor()+ "-"  + artikal.getUputstvo() + "-" +artikal.getVremePripreme().toString() + "-" + artikal.getUrlSlike());
+				pw.println(artikal.getNaziv() +"-" +artikal.getAutor()+ "-"  + artikal.getUputstvo() + "-" +artikal.getVremePripreme().toString() + "-" + artikal.getUrlSlike());
+			}
+			pw.close();
+			return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+	}	
+	}
+
 //	public void registrujKorisnika(String string, String string2, String string3, String string4, String string5) {
 //		// TODO Auto-generated method stub
 //		// RECI MARKIZI I JELENI DA NAPRAVE OVE SMECE PROZORE I VRATITI NA REGISTRACIJU 

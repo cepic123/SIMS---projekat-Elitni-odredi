@@ -116,34 +116,50 @@ public class AppWindow extends JFrame implements ActionListener {
 			 // TO DO
 			 
 			 
-			 addRecipe();
+			 addRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
 			 
 		} else if(clicked == userProfile.getCreateRecipe()) {
 			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
 //			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
 //			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
 			
-			addRecipe();
+			addRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
 			 
 		} else if(clicked == userProfile.getUpdateRecipe()) {
 			//check if row is selected
-			updateRecipe();
+			if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
+			return;
+		} else {
+			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
+			updateRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
+		}
+			
 		}
 	}
 	
-	private void addRecipe() {
+	private void addRecipe(String naziv, String opis, String imgUrl, String autor) {
 		
 		//try catch
 		//ovde proveriti da li su uneti podaci u dijalog...
 		 //u kontroleru dodati metodu za add recipe
 		// ja cu srediti refreshovanje viewa
-	}
-	
-	private void updateRecipe() {
+		
 		try {
-			//controller 
+			controller.dodajRecept(naziv, opis, imgUrl, autor); 
 		} catch(Exception e) {
 			//izbaci dijalog il sta god...
+			JOptionPane.showMessageDialog(this, "Nevalidan unos za novi recept");
+			
+		}
+	}
+	
+	private void updateRecipe(String naziv, String opis, String imgUrl, String autor) {
+		try {
+			//controller 
+			controller.updateRecept(naziv,opis,imgUrl,autor);
+		} catch(Exception e) {
+			//izbaci dijalog il sta god...
+			JOptionPane.showMessageDialog(this, "Nevalidan unos za updatovani recept");
 		}
 //		if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
 //			return;
