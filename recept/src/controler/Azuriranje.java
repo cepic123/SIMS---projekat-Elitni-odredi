@@ -47,6 +47,7 @@ public class Azuriranje {
 	
 	public void izmeniKorisnika(String username, String password, String imePrezime) {
 		String[] delovi = imePrezime.split(" ");
+		
 		String ime = delovi[0];
 		String prezime = delovi[1];
 		for(Korisnik korisnik : korisnici) {

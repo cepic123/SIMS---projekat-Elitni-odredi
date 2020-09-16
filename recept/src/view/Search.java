@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,19 +14,23 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class Search extends JPanel {
+import controler.ZaSearch;
+import model.Recept;
+
+public class Search extends JPanel implements ActionListener{
 	private JTextField recipeName;
 	private JTextField author;
 	private JTextField time;
 	private JButton searchButton;
 	private RecipesTable tableOfRecipes;
-	
+	private ZaSearch zaSearch = new ZaSearch(new ArrayList<Recept>());
 	public Search() {
 		
 		initComponents();
 	}
 	
 	private void initComponents() {
+		zaSearch.napuniRecepte();
 		JLabel recipeNameL = new JLabel("Naziv recepta:");
 		JLabel authorL = new JLabel("Autor:");
 		JLabel timeL = new JLabel("Vreme spremanja:");
@@ -33,6 +40,7 @@ public class Search extends JPanel {
 		time = new JTextField(15);
 
 		searchButton = new JButton("Pretrazi");
+		
 		
 		tableOfRecipes = new RecipesTable();
 		JScrollPane scrollPane = new JScrollPane(tableOfRecipes);
@@ -79,5 +87,22 @@ public class Search extends JPanel {
 		gbc.gridy = 2;
 		
 		add(scrollPane, gbc);
+		setActionListeners();
 	}
+	
+	private void setActionListeners() {
+		searchButton.addActionListener(this);
+		
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		JButton clicked = (JButton)e.getSource();
+		if(clicked == searchButton) {
+			
+			tableOfRecipes.setData(zaSearch.nadjiRecepte(recipeName.getText(),Integer.parseInt(time.getText()),author.getText()));
+		}
+		
+	}
+	
 }
