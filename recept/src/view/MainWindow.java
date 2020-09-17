@@ -138,7 +138,7 @@ public class MainWindow extends JFrame implements ActionListener {
 			 JOptionPane.showMessageDialog(this, "Uspesan login");
 			 AppWindow mw = new AppWindow(aplikacija,controller);
      		 mw.setVisible(true);
-//     		 dispose();
+     		 dispose();
 
 		}catch(NullPointerException e) {
 			JOptionPane.showMessageDialog(this, "Nisu uneti svi parametri!mrs", "Greska", JOptionPane.ERROR_MESSAGE);

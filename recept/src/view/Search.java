@@ -10,10 +10,12 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import controller.Controller;
 import controller.ZaSearch;
 import model.Recept;
 import model.Aplikacija;
@@ -25,14 +27,16 @@ public class Search extends JPanel implements ActionListener{
 	private JButton searchButton;
 	private RecipesTable tableOfRecipes;
 	private Aplikacija aplikacija;
+	private Controller controller;
 	
-	public Search(Aplikacija aplikacija) {
+	public Search(Aplikacija aplikacija, Controller controller) {
 		this.aplikacija = aplikacija;
+		this.controller = controller;
 		initComponents();
 	}
 	
 	private void initComponents() {
-//		zaSearch.napuniRecepte();
+		//zaSearch.napuniRecepte();
 		JLabel recipeNameL = new JLabel("Naziv recepta:");
 		JLabel authorL = new JLabel("Autor:");
 		JLabel timeL = new JLabel("Vreme spremanja:");
@@ -101,8 +105,15 @@ public class Search extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		JButton clicked = (JButton)e.getSource();
 		if(clicked == searchButton) {
-			
-//			tableOfRecipes.setData(zaSearch.nadjiRecepte(recipeName.getText(),Integer.parseInt(time.getText()),author.getText()));
+			try {
+				
+				ArrayList<Recept> recepti = controller.pretragaRecepta(recipeName.getText(),time.getText(),author.getText());
+				tableOfRecipes.setUserRecipess(recepti);
+			}catch(Exception e1) {
+				//izbaci dijalog il sta god...
+				JOptionPane.showMessageDialog(this, "Nevalidan unos za pretragu!");
+			}
+			//tableOfRecipes.setData(zaSearch.nadjiRecepte(recipeName.getText(),Integer.parseInt(time.getText()),author.getText()));
 		}
 		
 	}

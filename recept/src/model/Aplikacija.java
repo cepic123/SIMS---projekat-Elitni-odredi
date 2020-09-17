@@ -27,9 +27,21 @@ public class Aplikacija {
 		
 		napuniKorisnike();
 		napuniRecepte();
-		
+		napuniRecepteKorisnika();
 	}
 	
+	private void napuniRecepteKorisnika() {
+		// TODO Auto-generated method stub
+		
+		for(Recept recept : recepti) {
+			for(Korisnik korisnik : korisnici) {
+				if(recept.autor.equals(korisnik.username)) {
+					korisnik.getMojiRecepti().add(recept);
+				}
+			}
+		}		
+	}
+
 	public String getImeAplikacije() {
 		return imeAplikacije;
 	}
@@ -122,6 +134,8 @@ public class Aplikacija {
 		
 		//sve ok
 		Korisnik noviKorisnik = new Korisnik(name, surname, username, password, email, TipKorisnika.Korisnik);
+		korisnici.add(noviKorisnik);
+		upisiKorisnike();
 		return true;
 	}
 	
@@ -193,6 +207,98 @@ public class Aplikacija {
 		System.out.println("Nisi ulogovan");
 		return false;
 	}
+	
+	public void upisiKorisnike() {
+		try {
+		PrintWriter pw = new PrintWriter("korisnici.txt");
+		pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
+		try {
+			PrintWriter pw = new PrintWriter(new FileWriter("korisnici.txt",true));
+			for (Korisnik artikal : korisnici) {
+				pw.println(artikal.ime+"-"+artikal.prezime+"-"+artikal.username+"-"+
+							artikal.password+"-"+artikal.email+"-"+artikal.tip.name());
+			}
+			pw.close();
+			return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+
+	public void azurirajKorisnika(String text, String text2, String ime, String prezime) {
+		// TODO Auto-generated method stub
+		for(Korisnik korisnik : korisnici) {
+			if(korisnik.getUsername().equals(text)) {
+				korisnik.setPassword(text2);
+				korisnik.setIme(ime);
+				korisnik.setPrezime(prezime);
+			}
+		}
+		upisiKorisnike();
+	}
+
+	public void obrisiRecept(String valueAt, String valueAt2) {
+		// TODO Auto-generated method stub
+		ArrayList<Recept> noviRecepti = new ArrayList<Recept>();
+		for(Recept recept : recepti) {
+			if(valueAt.equals(recept.getAutor()) && valueAt2.equals(recept.getNaziv())) {
+				System.out.println("NASAO GA JE ");
+				continue;}
+				else {
+					noviRecepti.add(recept);
+				}
+		}
+		setRecepti(noviRecepti);
+			try {
+				PrintWriter pw = new PrintWriter("recepti.txt");
+				pw.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+				return;
+			}
+			try {
+				PrintWriter pw = new PrintWriter(new FileWriter("recepti.txt",true));
+				for (Recept artikal : recepti) {
+					System.out.println(artikal.getNaziv() +"-" +artikal.getAutor()+ "-"  + artikal.getUputstvo() + "-" +artikal.getVremePripreme().toString() + "-" + artikal.getUrlSlike());
+					pw.println(artikal.getNaziv() +"-" +artikal.getAutor()+ "-"  + artikal.getUputstvo() + "-" +artikal.getVremePripreme().toString() + "-" + artikal.getUrlSlike());
+				}
+				pw.close();
+				return;
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+		}
+
+	public ArrayList<Recept> pretragaRecepta(String text, Integer vreme, String text2) {
+		// TODO Auto-generated method stub
+		ArrayList<Recept> receptiZaSearch = new ArrayList<Recept>();
+		
+		for(Recept recept: this.recepti) {
+			if(recept.getNaziv().toLowerCase().contains(text.toLowerCase())) {
+				receptiZaSearch.add(recept);
+				System.out.println("NASO 1");
+				continue;
+			}
+			if(recept.getVremePripreme()<= vreme) {
+				receptiZaSearch.add(recept);
+				System.out.println("NASO 2");
+				continue;
+			}
+			if(recept.getAutor().toLowerCase().contains(text2.toLowerCase())) {
+				receptiZaSearch.add(recept);
+				System.out.println("NASO 3");
+				continue;
+			}
+		}
+		return receptiZaSearch;
+	}
+}
 
 //	public void registrujKorisnika(String string, String string2, String string3, String string4, String string5) {
 //		// TODO Auto-generated method stub
@@ -258,4 +364,4 @@ public class Aplikacija {
 //
 //		return receptiKorisnika;
 //	}
-}
+

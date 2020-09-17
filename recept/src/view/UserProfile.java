@@ -11,12 +11,14 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import controller.Azuriranje;
+import controller.Controller;
 import model.*;
 
 public class UserProfile extends JPanel implements ActionListener{
@@ -31,11 +33,13 @@ public class UserProfile extends JPanel implements ActionListener{
 	private JButton createRecipe;
 	private JButton updateRecipe;
 	private JButton deleteRecipe;
-	private Azuriranje az = new Azuriranje(new ArrayList<Korisnik>());
+	//private Azuriranje az = new Azuriranje(new ArrayList<Korisnik>());
 	private Aplikacija aplikacija;
+	private Controller controller;
 	
-	public UserProfile(Aplikacija aplikacija) {
+	public UserProfile(Aplikacija aplikacija, Controller controller) {
 		this.aplikacija = aplikacija;
+		this.controller = controller;
 		initComponents();
 	}
 	
@@ -186,9 +190,15 @@ public class UserProfile extends JPanel implements ActionListener{
 			username.setEditable(false);
 		    fullName.setEditable(false);
 		    password.setEditable(false);
-		    az.napuniKorisnike();
-		    az.izmeniKorisnika(username.getText(), password.getText(), fullName.getText());
-		    
+//		    az.napuniKorisnike();
+//		    az.izmeniKorisnika(username.getText(), password.getText(), fullName.getText());
+		    try {
+		    	controller.azurirajKorisnika(username.getText(),password.getText(),fullName.getText());
+		    }catch(Exception e1) {
+				//izbaci dijalog il sta god...
+				JOptionPane.showMessageDialog(this, "Nevalidan unos za azuriranje!");
+				
+			}
 		}
 		
 	}
@@ -303,14 +313,14 @@ public class UserProfile extends JPanel implements ActionListener{
 		this.deleteRecipe = deleteRecipe;
 	}
 
-	public Azuriranje getAz() {
-		return az;
-	}
-
-
-	public void setAz(Azuriranje az) {
-		this.az = az;
-	}
+//	public Azuriranje getAz() {
+//		return az;
+//	}
+//
+//
+//	public void setAz(Azuriranje az) {
+//		this.az = az;
+//	}
 	
 	// TO DO 
 	//Dodati action listener kad klikne na promeni podatke da setEditable bude true

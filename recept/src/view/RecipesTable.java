@@ -13,7 +13,7 @@ import model.Recept;
 
 public class RecipesTable extends JTable{
 	private Aplikacija aplikacija;
-	
+	private DefaultTableModel model;
 	public RecipesTable(Aplikacija aplikacija) {
 		this.aplikacija = aplikacija;
 		Border blackBorder = BorderFactory.createLineBorder(Color.black);
@@ -21,12 +21,15 @@ public class RecipesTable extends JTable{
 		String columns[]={"Autor","Naziv","Vreme pripreme","Opis","Detaljnije"};
 		Object[][] data = {};
 
-        DefaultTableModel model = new DefaultTableModel(data, columns);
+        model = new DefaultTableModel(data, columns);
 //        setEnabled(false);
         this.setModel(model);
         
 	}
 	
+	DefaultTableModel getDefModel() {
+		return this.model;
+	}
 	private void initComponents() {
 		
 	}
@@ -50,7 +53,27 @@ public class RecipesTable extends JTable{
 			 i ++;
 				 //{recept.getAutor(),recept.getNaziv(),recept.Integer.ParseInt().getVremePripreme(),recept.getUputstvo(),"Detaljnije"};
 		 }
-		 DefaultTableModel model = new DefaultTableModel(data, columns);
+		 model = new DefaultTableModel(data, columns);
 	     this.setModel(model); 
 	}
+
+	public void setUserRecipess(ArrayList<Recept> recepti) {
+		// TODO Auto-generated method stub
+		String columns[]={"Autor","Naziv","Vreme pripreme","Opis","Detaljnije"};
+		 Object[][] data = new Object[recepti.size()][5];
+		 int i = 0;
+		 for(Recept recept:recepti) {
+			 data[i][0] = recept.getAutor();
+			 data[i][1] = recept.getNaziv();
+			 data[i][2] = recept.getVremePripreme().toString();
+			 data[i][3] = recept.getUputstvo();
+			 data[i][4] = "Detaljnije";
+			 i ++;
+				 //{recept.getAutor(),recept.getNaziv(),recept.Integer.ParseInt().getVremePripreme(),recept.getUputstvo(),"Detaljnije"};
+		 }
+		 model = new DefaultTableModel(data, columns);
+	     this.setModel(model);
+	}
+
+	
 }

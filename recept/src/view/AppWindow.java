@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import controller.AddRecipec;
 import controller.Controller;
@@ -37,8 +39,8 @@ public class AppWindow extends JFrame implements ActionListener {
 		this.aplikacija = aplikacija;
 		this.controller = controller;
 //		 rc.napuniRecepte();
-		userProfile = new UserProfile(aplikacija);
-		search = new Search(aplikacija);
+		userProfile = new UserProfile(aplikacija,controller);
+		search = new Search(aplikacija, controller);
 		setSize(1000,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -64,6 +66,7 @@ public class AppWindow extends JFrame implements ActionListener {
 		newsFeed.getAddRecipe().addActionListener(this);
 		userProfile.getCreateRecipe().addActionListener(this);
 		userProfile.getUpdateRecipe().addActionListener(this);
+		userProfile.getDeleteRecipe().addActionListener(this);
 	}
 	
 	private JPanel getCurrentComponent() {
@@ -129,11 +132,20 @@ public class AppWindow extends JFrame implements ActionListener {
 			//check if row is selected
 			if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
 			return;
-		} else {
+			} else {
 			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
 			updateRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
-		}
+			}
 			
+		}else if(clicked == userProfile.getDeleteRecipe()) {
+			
+			if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
+				return;
+				} else {
+				controller.obrisiRecept((String)userProfile.getTableOfRecipes().getDefModel().getValueAt(userProfile.getTableOfRecipes().getSelectedRow(), 0), (String) userProfile.getTableOfRecipes().getDefModel().getValueAt(userProfile.getTableOfRecipes().getSelectedRow(), 1));
+				userProfile.getTableOfRecipes().getDefModel().removeRow(userProfile.getTableOfRecipes().getSelectedRow());
+				
+			}
 		}
 	}
 	
@@ -161,15 +173,6 @@ public class AppWindow extends JFrame implements ActionListener {
 			//izbaci dijalog il sta god...
 			JOptionPane.showMessageDialog(this, "Nevalidan unos za updatovani recept");
 		}
-//		if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
-//			return;
-//		} else {
-//			//TO DO - staviti info
-//			addRecipe.getRecipeName().setText("naziv");
-//			addRecipe.getDescription().setText("kuvaj levo kuvaj desno");
-//			addRecipe.getImageUrl().setText("slika.jpg");
-//			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
-//		}
 	}
 	
 	private void changePanel(JPanel current, JPanel panelToSet) {
