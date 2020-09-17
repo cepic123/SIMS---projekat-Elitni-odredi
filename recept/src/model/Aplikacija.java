@@ -24,6 +24,7 @@ public class Aplikacija {
 		this.recepti = recepti;
 		this.korisnici = korisnici;
 		
+		
 		napuniKorisnike();
 		napuniRecepte();
 		

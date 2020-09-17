@@ -44,12 +44,14 @@ public class Controller {
 
 	public void ulogujSe(String text, String text2) {
 		// TODO Auto-generated method stub
+		System.out.println("ovde");
 		if(text.equals("") || text2.equals("")) {
 			System.out.println("ovo");
 			throw new NullPointerException();
 		}
 		
 		if(!aplikacija.ulogujSe(text,text2)) {
+			System.out.println("ovo");
 			throw new NullPointerException();
 		}
 	}

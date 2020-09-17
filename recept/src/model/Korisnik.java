@@ -8,12 +8,12 @@ public class Korisnik {
 	String password;
 	String email;
 	TipKorisnika tip;
-	ArrayList<Recept> mojiRecepti;
-	ArrayList<Recept> sacuvaniRecepti;
-	ArrayList<Recept> lajkovaniRecepti;
-	ArrayList<Korisnik> prati;
-	ArrayList<Korisnik> pratioci;
-	ArrayList<Alergen> alergeni;
+	ArrayList<Recept> mojiRecepti = new ArrayList<Recept>();
+	ArrayList<Recept> sacuvaniRecepti = new ArrayList<Recept>();
+	ArrayList<Recept> lajkovaniRecepti = new ArrayList<Recept>();
+	ArrayList<Korisnik> prati = new ArrayList<Korisnik>();
+	ArrayList<Korisnik> pratioci = new ArrayList<Korisnik>();
+	ArrayList<Alergen> alergeni = new ArrayList<Alergen>();
 	public Korisnik(String ime, String prezime, String username, String password, String email, TipKorisnika tip) {
 		this.ime = ime;
 		this.prezime = prezime;

@@ -42,21 +42,21 @@ public class AppWindow extends JFrame implements ActionListener {
 		setSize(1000,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+//		
 		scroll = new JScrollPane(newsFeed);
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
 		userProfile.setData();
 		userProfile.getTableOfRecipes().setUserRecipes();
 		current = 0; //0 je newsfeed
-		
+//		
 		addRecipe = new AddRecipe();
-		
-		
-		
+//		
+//		
+//		
 		navigationBar.getFirstButton().setForeground(lightOrange);
 		add(navigationBar, BorderLayout.WEST);
 		add(scroll, BorderLayout.CENTER);
-
+//
 		navigationBar.getFirstButton().addActionListener(this);
 		navigationBar.getSecondButton().addActionListener(this);
 		navigationBar.getThirdButton().addActionListener(this);
