@@ -22,7 +22,7 @@ public class AppWindow extends JFrame implements ActionListener {
 	
 	private NavigationPanel navigationBar = new NavigationPanel("Pocetna strana",
 			"Pretraga","Moj profil","Odjavi se");
-	private NewsFeed newsFeed = new NewsFeed();
+	private NewsFeed newsFeed;
 	private UserProfile userProfile;
 	private Search search;
 	private int current;
@@ -31,7 +31,6 @@ public class AppWindow extends JFrame implements ActionListener {
 	private AddRecipe addRecipe;
 	private Controller controller;
 	private Aplikacija aplikacija;
-//	ArrayList<Recept> recepti = new ArrayList<Recept>();
 
 	public AppWindow(Aplikacija aplikacija, Controller controller) {
 		this.aplikacija = aplikacija;
@@ -39,6 +38,7 @@ public class AppWindow extends JFrame implements ActionListener {
 //		 rc.napuniRecepte();
 		userProfile = new UserProfile(aplikacija);
 		search = new Search(aplikacija);
+		newsFeed = new NewsFeed(aplikacija);
 		setSize(1000,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -50,8 +50,6 @@ public class AppWindow extends JFrame implements ActionListener {
 		current = 0; //0 je newsfeed
 		
 		addRecipe = new AddRecipe();
-		
-		
 		
 		navigationBar.getFirstButton().setForeground(lightOrange);
 		add(navigationBar, BorderLayout.WEST);
@@ -116,34 +114,50 @@ public class AppWindow extends JFrame implements ActionListener {
 			 // TO DO
 			 
 			 
-			 addRecipe();
+			 addRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
 			 
 		} else if(clicked == userProfile.getCreateRecipe()) {
 			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
 //			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
 //			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
 			
-			addRecipe();
+			addRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
 			 
 		} else if(clicked == userProfile.getUpdateRecipe()) {
 			//check if row is selected
-			updateRecipe();
+			if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
+			return;
+		} else {
+			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
+			updateRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
+		}
+			
 		}
 	}
 	
-	private void addRecipe() {
+	private void addRecipe(String naziv, String opis, String imgUrl, String autor) {
 		
 		//try catch
 		//ovde proveriti da li su uneti podaci u dijalog...
 		 //u kontroleru dodati metodu za add recipe
 		// ja cu srediti refreshovanje viewa
-	}
-	
-	private void updateRecipe() {
+		
 		try {
-			//controller 
+			controller.dodajRecept(naziv, opis, imgUrl, autor); 
 		} catch(Exception e) {
 			//izbaci dijalog il sta god...
+			JOptionPane.showMessageDialog(this, "Nevalidan unos za novi recept");
+			
+		}
+	}
+	
+	private void updateRecipe(String naziv, String opis, String imgUrl, String autor) {
+		try {
+			//controller 
+			controller.updateRecept(naziv,opis,imgUrl,autor);
+		} catch(Exception e) {
+			//izbaci dijalog il sta god...
+			JOptionPane.showMessageDialog(this, "Nevalidan unos za updatovani recept");
 		}
 //		if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
 //			return;

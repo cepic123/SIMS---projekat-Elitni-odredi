@@ -23,7 +23,22 @@ public class Controller {
 	
 	public void dodajRecept(String naziv,String opis,String urlSlike,String autor) {
 		//if pr
+		if(naziv == "" || opis == "" || urlSlike == "") {
+			throw new NullPointerException();
+		}else {
+			aplikacija.dodajRecept(naziv,opis,urlSlike,autor);
+		}
+		
 //		throw new Exception();
 //		aplikacija.dodajRecept();
+	}
+
+	public void updateRecept(String naziv, String opis, String imgUrl, String autor) {
+		// TODO Auto-generated method stub
+		if(naziv == "" || opis == "" || imgUrl == "") {
+			throw new NullPointerException();
+		}else {
+			aplikacija.updateRecept(naziv,opis,imgUrl,autor);
+		}
 	}
 }

@@ -21,7 +21,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	private NavigationPanel navigationBar = new NavigationPanel("Pregled",
 			"Registracija","Prijava","Exit");
 	private JScrollPane scroll;
-	private NewsFeed newsFeed = new NewsFeed();
+	private NewsFeed newsFeed;
 	private Login loginPanel = new Login();
 	private Registration registrationPanel = new Registration();
 	private int current;
@@ -46,6 +46,8 @@ public class MainWindow extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
+		
+		newsFeed = new NewsFeed(aplikacija);
 		
 		scroll = new JScrollPane(newsFeed);
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
