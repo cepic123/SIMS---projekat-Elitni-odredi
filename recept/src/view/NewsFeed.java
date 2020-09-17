@@ -17,19 +17,20 @@ public class NewsFeed extends JPanel {
 	JButton addRecipe;
 	private ArrayList<RecipePanel> recipes;
 	private JButton next;
-	private ReceptiNewsFeed rc = new ReceptiNewsFeed(new ArrayList<Recept>());
-	public NewsFeed() {
+	private Aplikacija aplikacija;
+	public NewsFeed(Aplikacija aplikacija) {
+		
+		this.aplikacija = aplikacija;
 		initComponents();
 	
 	}
 	
 	private void initComponents() {
-		rc.napuniRecepte();	
 
 		recipes = new ArrayList<RecipePanel>();
 		next = new JButton("Sledeca strana");
 		
-		for(int i = 0; i < rc.getRecepti().size(); i++) {
+		for(int i = 0; i < aplikacija.getRecepti().size(); i++) {
 			RecipePanel rp = new RecipePanel();
 			recipes.add(rp);
 		}
@@ -50,26 +51,6 @@ public class NewsFeed extends JPanel {
 	    add(addRecipe, gbc);
 	    gbc.insets = new Insets(20,0,0,0);
 	    
-//		gbc.gridx = 0;
-//	    gbc.gridy = 1;
-//	    gbc.gridwidth = 2;
-//	    add(recipes.get(0), gbc);
-//	    
-//	    gbc.gridx = 0;
-//	    gbc.gridy = 2;
-//	    add(recipes.get(1), gbc);
-//	    
-//	    gbc.gridx = 0;
-//	    gbc.gridy = 3;
-//	    add(recipes.get(2), gbc);
-//	    
-//	    gbc.gridx = 0;
-//	    gbc.gridy = 4;
-//	    add(recipes.get(3), gbc);
-//	    
-//	    gbc.gridx = 0;
-//	    gbc.gridy = 5;
-//	    add(next, gbc);
 	    for(int i=0;i<recipes.size();i++) {
 	    	gbc.gridx = 0;
 		    gbc.gridy = i+1;
@@ -83,7 +64,7 @@ public class NewsFeed extends JPanel {
 	
 	private void setData() {
 		for(int i = 0; i < recipes.size(); i++) {
-			recipes.get(i).setData(rc.getRecepti().get(i));
+			recipes.get(i).setData(aplikacija.getRecepti().get(i));
 		}
 	}
 
@@ -111,14 +92,6 @@ public class NewsFeed extends JPanel {
 		this.next = next;
 	}
 
-	public ReceptiNewsFeed getRc() {
-		return rc;
-	}
-
-	public void setRc(ReceptiNewsFeed rc) {
-		this.rc = rc;
-	}
-	
 	
 }
 

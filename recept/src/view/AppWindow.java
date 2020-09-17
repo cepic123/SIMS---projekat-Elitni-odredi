@@ -22,7 +22,7 @@ public class AppWindow extends JFrame implements ActionListener {
 	
 	private NavigationPanel navigationBar = new NavigationPanel("Pocetna strana",
 			"Pretraga","Moj profil","Odjavi se");
-	private NewsFeed newsFeed = new NewsFeed();
+	private NewsFeed newsFeed;
 	private UserProfile userProfile;
 	private Search search;
 	private int current;
@@ -31,7 +31,6 @@ public class AppWindow extends JFrame implements ActionListener {
 	private AddRecipe addRecipe;
 	private Controller controller;
 	private Aplikacija aplikacija;
-//	ArrayList<Recept> recepti = new ArrayList<Recept>();
 
 	public AppWindow(Aplikacija aplikacija, Controller controller) {
 		this.aplikacija = aplikacija;
@@ -39,6 +38,7 @@ public class AppWindow extends JFrame implements ActionListener {
 //		 rc.napuniRecepte();
 		userProfile = new UserProfile(aplikacija);
 		search = new Search(aplikacija);
+		newsFeed = new NewsFeed(aplikacija);
 		setSize(1000,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -50,8 +50,6 @@ public class AppWindow extends JFrame implements ActionListener {
 		current = 0; //0 je newsfeed
 		
 		addRecipe = new AddRecipe();
-		
-		
 		
 		navigationBar.getFirstButton().setForeground(lightOrange);
 		add(navigationBar, BorderLayout.WEST);

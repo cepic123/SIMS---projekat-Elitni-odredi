@@ -128,6 +128,8 @@ public class Aplikacija {
 		Recept novi = new Recept(naziv,autor,opis,0,urlSlike);
 		System.out.println(recepti);
 		recepti.add(novi);
+		
+//		upisiRecepteUFajl();
 		try {
 			PrintWriter pw = new PrintWriter("recepti.txt");
 			pw.close();
