@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import controller.Controller;
+import view.AppWindow;
 import view.MainWindow;
 
 public class Main {
@@ -16,7 +17,7 @@ public class Main {
 		
 		//ovo dole je test
 //		Korisnik k = new Korisnik("goca", "milosavljevic", "goca", "goca123", "goca@uns.ac.rs", TipKorisnika.Admin);
-//		AppWindow aw = new AppWindow(k);
+//		AppWindow aw = new AppWindow(aplikacija,controller);
 //		aw.setVisible(true);
 	}
 }

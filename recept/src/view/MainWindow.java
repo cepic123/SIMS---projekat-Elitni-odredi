@@ -133,6 +133,18 @@ public class MainWindow extends JFrame implements ActionListener {
 	
 	private void ulogujSe() {
 		//SEKA TO DO
+		try {
+			controller.ulogujSe(loginPanel.getUsername().getText(),loginPanel.getPassword().getText());
+			 JOptionPane.showMessageDialog(this, "Uspesan login");
+			 AppWindow mw = new AppWindow(aplikacija,controller);
+     		 mw.setVisible(true);
+//     		 dispose();
+
+		}catch(NullPointerException e) {
+			JOptionPane.showMessageDialog(this, "Nisu uneti svi parametri!mrs", "Greska", JOptionPane.ERROR_MESSAGE);
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this, "Nije uneta dobra kombinacija!", "Greska", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	private void changePanel(JPanel current, JPanel panelToSet) {

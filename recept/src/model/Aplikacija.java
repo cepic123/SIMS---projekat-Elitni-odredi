@@ -178,6 +178,21 @@ public class Aplikacija {
 	}	
 	}
 
+	public boolean ulogujSe(String text, String text2) {
+		// TODO Auto-generated method stub
+		for(Korisnik korisnik: korisnici) {
+		if(korisnik.username.equals(text) && korisnik.password.equals(text2)) {
+			System.out.println("Ulogovan si");
+			ulogovan = korisnik;
+			//ulogovan.setMojiRecepti(nadjiRecepteKorisnikove(korisnik));
+			System.out.println(ulogovan.getUsername());
+			return true;
+			}
+		}
+		System.out.println("Nisi ulogovan");
+		return false;
+	}
+
 //	public void registrujKorisnika(String string, String string2, String string3, String string4, String string5) {
 //		// TODO Auto-generated method stub
 //		// RECI MARKIZI I JELENI DA NAPRAVE OVE SMECE PROZORE I VRATITI NA REGISTRACIJU 

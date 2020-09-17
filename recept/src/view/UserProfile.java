@@ -159,14 +159,17 @@ public class UserProfile extends JPanel implements ActionListener{
 	    gbc.gridx = 3;
 	    gbc.gridy = 8;
 	    add(deleteRecipe, gbc);
-	    
+	    setData();
 //		updateRecipe = new JButton("Izmeni recept");
 //		deleteRecipe = new JButton("Obrisi recept");
 	}
 	
 	void setData() {
 		//prosledjivanje strukture podataka tipa Korisnik i uzimanje podataka 
+		System.out.println(aplikacija.getUlogovan().getUsername());
+		System.out.println();
 		username.setText(aplikacija.getUlogovan().getUsername());
+		
 		fullName.setText(aplikacija.getUlogovan().getIme()+" "+aplikacija.getUlogovan().getPrezime());
 		password.setText(aplikacija.getUlogovan().getPassword());
 	}

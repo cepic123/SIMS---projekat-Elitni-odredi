@@ -41,4 +41,16 @@ public class Controller {
 			aplikacija.updateRecept(naziv,opis,imgUrl,autor);
 		}
 	}
+
+	public void ulogujSe(String text, String text2) {
+		// TODO Auto-generated method stub
+		if(text.equals("") || text2.equals("")) {
+			System.out.println("ovo");
+			throw new NullPointerException();
+		}
+		
+		if(!aplikacija.ulogujSe(text,text2)) {
+			throw new NullPointerException();
+		}
+	}
 }
