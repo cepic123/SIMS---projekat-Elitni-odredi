@@ -19,10 +19,10 @@ public class NavigationPanel extends JPanel {
 	public NavigationPanel(String first_buttonS, String second_buttonS, String third_buttonS, 
 			String fourth_buttonS) {
 		
-		firstButton = new JButton(first_buttonS); //newsf
-		secondButton = new JButton(second_buttonS); //searc
-		thirdButton = new JButton(third_buttonS); //profile
-		fourthButton = new JButton(fourth_buttonS); //logout
+		firstButton = new JButton(first_buttonS); 
+		secondButton = new JButton(second_buttonS);
+		thirdButton = new JButton(third_buttonS); 
+		fourthButton = new JButton(fourth_buttonS);
 		
 		setPreferredSize(new Dimension(200,500));
 		initComponents();
@@ -47,7 +47,6 @@ public class NavigationPanel extends JPanel {
 		setBackground(lighterOrange);
 		
 		firstButton.setBackground(Color.WHITE);
-//		newsFeedButton.setForeground(lightOrange);
 		
 		secondButton.setBackground(Color.WHITE);
 		secondButton.setBorder(buttonBorder);

@@ -132,7 +132,7 @@ public class Aplikacija {
 			}
 		}
 		
-		//sve ok
+		
 		Korisnik noviKorisnik = new Korisnik(name, surname, username, password, email, TipKorisnika.Korisnik);
 		korisnici.add(noviKorisnik);
 		upisiKorisnike();
@@ -141,7 +141,6 @@ public class Aplikacija {
 	
 	public void dodajRecept(String naziv,String opis,String urlSlike,String autor) {
 		Recept novi = new Recept(naziv,autor,opis,0,urlSlike);
-		System.out.println(recepti);
 		recepti.add(novi);
 		try {
 			PrintWriter pw = new PrintWriter("recepti.txt");
@@ -181,7 +180,6 @@ public class Aplikacija {
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("recepti.txt",true));
 			for (Recept artikal : recepti) {
-				System.out.println(artikal.getNaziv() +"-" +artikal.getAutor()+ "-"  + artikal.getUputstvo() + "-" +artikal.getVremePripreme().toString() + "-" + artikal.getUrlSlike());
 				pw.println(artikal.getNaziv() +"-" +artikal.getAutor()+ "-"  + artikal.getUputstvo() + "-" +artikal.getVremePripreme().toString() + "-" + artikal.getUrlSlike());
 			}
 			pw.close();
@@ -197,14 +195,10 @@ public class Aplikacija {
 		// TODO Auto-generated method stub
 		for(Korisnik korisnik: korisnici) {
 		if(korisnik.username.equals(text) && korisnik.password.equals(text2)) {
-			System.out.println("Ulogovan si");
 			ulogovan = korisnik;
-			//ulogovan.setMojiRecepti(nadjiRecepteKorisnikove(korisnik));
-			System.out.println(ulogovan.getUsername());
 			return true;
 			}
 		}
-		System.out.println("Nisi ulogovan");
 		return false;
 	}
 	
@@ -247,7 +241,6 @@ public class Aplikacija {
 		ArrayList<Recept> noviRecepti = new ArrayList<Recept>();
 		for(Recept recept : recepti) {
 			if(valueAt.equals(recept.getAutor()) && valueAt2.equals(recept.getNaziv())) {
-				System.out.println("NASAO GA JE ");
 				continue;}
 				else {
 					noviRecepti.add(recept);
@@ -282,17 +275,17 @@ public class Aplikacija {
 		for(Recept recept: this.recepti) {
 			if(recept.getNaziv().toLowerCase().contains(text.toLowerCase())) {
 				receptiZaSearch.add(recept);
-				System.out.println("NASO 1");
+				
 				continue;
 			}
 			if(recept.getVremePripreme()<= vreme) {
 				receptiZaSearch.add(recept);
-				System.out.println("NASO 2");
+				
 				continue;
 			}
 			if(recept.getAutor().toLowerCase().contains(text2.toLowerCase())) {
 				receptiZaSearch.add(recept);
-				System.out.println("NASO 3");
+				
 				continue;
 			}
 		}
@@ -300,68 +293,5 @@ public class Aplikacija {
 	}
 }
 
-//	public void registrujKorisnika(String string, String string2, String string3, String string4, String string5) {
-//		// TODO Auto-generated method stub
-//		// RECI MARKIZI I JELENI DA NAPRAVE OVE SMECE PROZORE I VRATITI NA REGISTRACIJU 
-//		// A KAD JE USPESNA OBAVESTITI I PREBACITI NA EKRAN PRIJAVE 
-//		if(string.equals("") || string2.equals("") || string3.equals("") || string4.equals("") || string5.equals("")) {
-//			System.out.println("NE MOZE");
-//			return;
-//		}
-//		for(Korisnik  korisnik : korisnici) {
-//			if(korisnik.username.equals(string3)) {
-//				System.out.println("NE MOZE");
-//				return;
-//			}
-//		}
-//		
-//		Korisnik vrati = new Korisnik(string,string2,string3,string4,string5,TipKorisnika.Korisnik);
-//		this.korisnici.add(vrati);
-//		
-//		try {
-//			PrintWriter pw = new PrintWriter("korisnici.txt");
-//			pw.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//			return;
-//		}
-//		try {
-//			PrintWriter pw = new PrintWriter(new FileWriter("korisnici.txt",true));
-//			for (Korisnik artikal : korisnici) {
-//				pw.println(artikal.ime+"-"+artikal.prezime+"-"+artikal.username+"-"+
-//							artikal.password+"-"+artikal.email+"-"+artikal.tip.name());
-//			}
-//			pw.close();
-//			return;
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return;
-//		}
-//	}
-	
-//	public boolean ulogujSe(String text, String text2) {
-//		// TODO Auto-generated method stub
-//		for(Korisnik korisnik: korisnici) {
-//			if(korisnik.username.equals(text) && korisnik.password.equals(text2)) {
-//				System.out.println("Ulogovan si");
-//				ulogovan = korisnik;
-//				ulogovan.setMojiRecepti(nadjiRecepteKorisnikove(korisnik));
-//				return true;
-//			}
-//		}
-//		System.out.println("Nisi ulogovan");
-//		return false;
-//	}
-//	
-//	public ArrayList<Recept> nadjiRecepteKorisnikove(Korisnik korisnik){
-//		ArrayList<Recept> receptiKorisnika = new ArrayList<Recept>();
-//		System.out.println(recepti.size());
-//		for(Recept recept : recepti) {
-//			if(recept.autor.equals(korisnik.username)) {
-//				receptiKorisnika.add(recept);
-//			}
-//		}		
-//
-//		return receptiKorisnika;
-//	}
+
 

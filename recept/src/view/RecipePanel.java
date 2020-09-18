@@ -32,8 +32,6 @@ public class RecipePanel extends JPanel {
 	
 	private void initComponents() {
 		
-//		Border blackBorder = BorderFactory.createLineBorder(Color.black);
-//		setBorder(blackBorder);
 		setBackground(Color.white);
 		
 		username = new JLabel();
@@ -70,12 +68,10 @@ public class RecipePanel extends JPanel {
 	    gbc.gridwidth = 3;
 	    gbc.gridx = 0;
 	    gbc.gridy = 4;
-//	    add(detailsButton);
 	    
 	}
 	
 	public void setData(Recept recept) {
-		//Kontam da ovde prosledis neku strukturu podataka tipa Recept pa da izvlacis iz njega podatke, a ovo je samo primer
 		username.setText(recept.getAutor());
 		recipeName.setText(recept.getNaziv());
 		recipeDescription.setText(recept.getUputstvo());

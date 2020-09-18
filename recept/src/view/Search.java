@@ -16,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import controller.Controller;
-import controller.ZaSearch;
 import model.Recept;
 import model.Aplikacija;
 
@@ -36,7 +35,6 @@ public class Search extends JPanel implements ActionListener{
 	}
 	
 	private void initComponents() {
-		//zaSearch.napuniRecepte();
 		JLabel recipeNameL = new JLabel("Naziv recepta:");
 		JLabel authorL = new JLabel("Autor:");
 		JLabel timeL = new JLabel("Vreme spremanja:");
@@ -56,9 +54,6 @@ public class Search extends JPanel implements ActionListener{
 		setLayout(layout);
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10,3,3,3);
-//		gbc.anchor = GridBagConstraints.NORTHWEST;
-//		gbc.weightx = 1.0;
-//		gbc.weighty = 1.0;
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -102,7 +97,6 @@ public class Search extends JPanel implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		JButton clicked = (JButton)e.getSource();
 		if(clicked == searchButton) {
 			try {
@@ -110,10 +104,8 @@ public class Search extends JPanel implements ActionListener{
 				ArrayList<Recept> recepti = controller.pretragaRecepta(recipeName.getText(),time.getText(),author.getText());
 				tableOfRecipes.setUserRecipess(recepti);
 			}catch(Exception e1) {
-				//izbaci dijalog il sta god...
 				JOptionPane.showMessageDialog(this, "Nevalidan unos za pretragu!");
 			}
-			//tableOfRecipes.setData(zaSearch.nadjiRecepte(recipeName.getText(),Integer.parseInt(time.getText()),author.getText()));
 		}
 		
 	}

@@ -99,7 +99,7 @@ public class Registration extends JPanel{
 		this.password = password;
 	}
 
-	public JTextField getUName() { //morala sam promeniti u getUName jer getName vec postoji
+	public JTextField getUName() { 
 		return name;
 	}
 

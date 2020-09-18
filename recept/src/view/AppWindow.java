@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.AddRecipec;
+
 import controller.Controller;
 import model.Aplikacija;
 import model.Korisnik;
@@ -24,7 +24,7 @@ public class AppWindow extends JFrame implements ActionListener {
 	
 	private NavigationPanel navigationBar = new NavigationPanel("Pocetna strana",
 			"Pretraga","Moj profil","Odjavi se");
-	private NewsFeed newsFeed = new NewsFeed();
+	private NewsFeed newsFeed;
 	private UserProfile userProfile;
 	private Search search;
 	private int current;
@@ -33,32 +33,27 @@ public class AppWindow extends JFrame implements ActionListener {
 	private AddRecipe addRecipe;
 	private Controller controller;
 	private Aplikacija aplikacija;
-//	ArrayList<Recept> recepti = new ArrayList<Recept>();
 
 	public AppWindow(Aplikacija aplikacija, Controller controller) {
 		this.aplikacija = aplikacija;
 		this.controller = controller;
-//		 rc.napuniRecepte();
 		userProfile = new UserProfile(aplikacija,controller);
 		search = new Search(aplikacija, controller);
+		newsFeed  = new NewsFeed(aplikacija);
+		
 		setSize(1000,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-//		
 		scroll = new JScrollPane(newsFeed);
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
 		userProfile.setData();
 		userProfile.getTableOfRecipes().setUserRecipes();
 		current = 0; //0 je newsfeed
-//		
 		addRecipe = new AddRecipe();
-//		
-//		
-//		
 		navigationBar.getFirstButton().setForeground(lightOrange);
 		add(navigationBar, BorderLayout.WEST);
 		add(scroll, BorderLayout.CENTER);
-//
+		
 		navigationBar.getFirstButton().addActionListener(this);
 		navigationBar.getSecondButton().addActionListener(this);
 		navigationBar.getThirdButton().addActionListener(this);
@@ -80,9 +75,7 @@ public class AppWindow extends JFrame implements ActionListener {
 			navigationBar.getSecondButton().setForeground(Color.black);
 			return search;
 		} else  {
-			//odloguj se
 			return new JPanel();
-			
 		}
 	}
 
@@ -105,31 +98,22 @@ public class AppWindow extends JFrame implements ActionListener {
 			navigationBar.getSecondButton().setForeground(lightOrange);
 			current = 2;
 		}else if(clicked == navigationBar.getFourthButton()) {
-			//e ovde nisam sig da li se stavlja new Controller() i new Aplikacija ili ne
 			Aplikacija newAplikacija = new Aplikacija("Naziv","domen",new ArrayList<Korisnik>(), new ArrayList<Recept>());
 			MainWindow mw = new MainWindow(new Controller(newAplikacija), newAplikacija);
      		mw.setVisible(true);
      		dispose();
 		} else if(clicked == newsFeed.getAddRecipe()) {
-			//iskoci dijalog
 			 JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
-//			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
-//			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
-			 
-			 // TO DO
-			 
-			 
+	 
 			 addRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
+			
 			 
 		} else if(clicked == userProfile.getCreateRecipe()) {
 			JOptionPane.showMessageDialog(this,addRecipe,"Dodaj recept",JOptionPane.INFORMATION_MESSAGE);
-//			 rc.dodajRecept(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), korisnik.getUsername());
-//			 userProfile.tableOfRecipes.setData(korisnik.getMojiRecepti());
-			
+
 			addRecipe(addRecipe.getRecipeName().getText(), addRecipe.getDescription().getText(), addRecipe.getImageUrl().getText(), aplikacija.getUlogovan().getUsername());
 			 
 		} else if(clicked == userProfile.getUpdateRecipe()) {
-			//check if row is selected
 			if(userProfile.getTableOfRecipes().getSelectionModel().isSelectionEmpty()) {
 			return;
 			} else {
@@ -151,15 +135,13 @@ public class AppWindow extends JFrame implements ActionListener {
 	
 	private void addRecipe(String naziv, String opis, String imgUrl, String autor) {
 		
-		//try catch
-		//ovde proveriti da li su uneti podaci u dijalog...
-		 //u kontroleru dodati metodu za add recipe
-		// ja cu srediti refreshovanje viewa
-		
 		try {
-			controller.dodajRecept(naziv, opis, imgUrl, autor); 
+			controller.dodajRecept(naziv, opis, imgUrl, autor);
+			userProfile.getTableOfRecipes().setUserRecipes();
+		
+			userProfile.getTableOfRecipes().revalidate();
+			userProfile.getTableOfRecipes().repaint();
 		} catch(Exception e) {
-			//izbaci dijalog il sta god...
 			JOptionPane.showMessageDialog(this, "Nevalidan unos za novi recept");
 			
 		}
@@ -167,10 +149,8 @@ public class AppWindow extends JFrame implements ActionListener {
 	
 	private void updateRecipe(String naziv, String opis, String imgUrl, String autor) {
 		try {
-			//controller 
 			controller.updateRecept(naziv,opis,imgUrl,autor);
 		} catch(Exception e) {
-			//izbaci dijalog il sta god...
 			JOptionPane.showMessageDialog(this, "Nevalidan unos za updatovani recept");
 		}
 	}

@@ -26,7 +26,7 @@ public class AddRecipe extends JPanel {
 		
 		description.setLineWrap(true);
 		JScrollPane scrollPane = new JScrollPane(description); 
-//		description.setEditable(false);
+
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();

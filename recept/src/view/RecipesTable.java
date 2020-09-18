@@ -22,7 +22,6 @@ public class RecipesTable extends JTable{
 		Object[][] data = {};
 
         model = new DefaultTableModel(data, columns);
-//        setEnabled(false);
         this.setModel(model);
         
 	}
@@ -33,14 +32,9 @@ public class RecipesTable extends JTable{
 	private void initComponents() {
 		
 	}
-//	int [][] matrix = new int[10][20];
-//	for(int i = 0; i < 10; i++) {
-//	    for(int j = 0; j < 20; j++) {
-//	        // read information from somewhere
-//	        matrix[i][j] = information;
-//	    }
-//	}
+
 	 void setUserRecipes() {
+		 System.out.println("udje opet");
 		 String columns[]={"Autor","Naziv","Vreme pripreme","Opis","Detaljnije"};
 		 Object[][] data = new Object[aplikacija.getUlogovan().getMojiRecepti().size()][5];
 		 int i = 0;
@@ -51,14 +45,12 @@ public class RecipesTable extends JTable{
 			 data[i][3] = recept.getUputstvo();
 			 data[i][4] = "Detaljnije";
 			 i ++;
-				 //{recept.getAutor(),recept.getNaziv(),recept.Integer.ParseInt().getVremePripreme(),recept.getUputstvo(),"Detaljnije"};
 		 }
 		 model = new DefaultTableModel(data, columns);
 	     this.setModel(model); 
 	}
 
 	public void setUserRecipess(ArrayList<Recept> recepti) {
-		// TODO Auto-generated method stub
 		String columns[]={"Autor","Naziv","Vreme pripreme","Opis","Detaljnije"};
 		 Object[][] data = new Object[recepti.size()][5];
 		 int i = 0;
@@ -69,7 +61,6 @@ public class RecipesTable extends JTable{
 			 data[i][3] = recept.getUputstvo();
 			 data[i][4] = "Detaljnije";
 			 i ++;
-				 //{recept.getAutor(),recept.getNaziv(),recept.Integer.ParseInt().getVremePripreme(),recept.getUputstvo(),"Detaljnije"};
 		 }
 		 model = new DefaultTableModel(data, columns);
 	     this.setModel(model);

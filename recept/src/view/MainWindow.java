@@ -21,7 +21,7 @@ public class MainWindow extends JFrame implements ActionListener {
 	private NavigationPanel navigationBar = new NavigationPanel("Pregled",
 			"Registracija","Prijava","Exit");
 	private JScrollPane scroll;
-	private NewsFeed newsFeed = new NewsFeed();
+	private NewsFeed newsFeed;
 	private Login loginPanel = new Login();
 	private Registration registrationPanel = new Registration();
 	private int current;
@@ -31,10 +31,6 @@ public class MainWindow extends JFrame implements ActionListener {
 	private Aplikacija aplikacija;
 	
 	public MainWindow(Controller controller, Aplikacija aplikacija) {
-//		aplikacija.getRecepti().clear();
-//		aplikacija.getKorisnici().clear();
-//		aplikacija.napuniKorisnike();
-//		aplikacija.napuniRecepte();
 		this.controller = controller;
 		this.aplikacija = aplikacija;
 		initComponents();
@@ -47,6 +43,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		
+		newsFeed = new NewsFeed(aplikacija);
 		scroll = new JScrollPane(newsFeed);
 		scroll.getVerticalScrollBar().setUnitIncrement(14);
 		
@@ -97,16 +94,6 @@ public class MainWindow extends JFrame implements ActionListener {
 			current = 2;
 		} else if(clicked == loginPanel.getSubmit()) {
 			
-//			if(aplikacija.ulogujSe(loginPanel.getUsername().getText(),loginPanel.getPassword().getText()) == true) {
-//		    	//	JOptionPane.showInternalMessageDialog(,"Uspesno ste se ulogovali u ");
-//					 JOptionPane.showMessageDialog(this, "Uspesan login");
-//					 AppWindow mw = new AppWindow(aplikacija.getUlogovan());
-//		      		 mw.setVisible(true);
-//		      		 dispose();
-//		      		 
-//					}else {
-//					 JOptionPane.showMessageDialog(this, "Neuspesan login");
-//					}
 			ulogujSe();
 			
 		} else if(clicked == registrationPanel.getSubmit()) {
@@ -132,7 +119,6 @@ public class MainWindow extends JFrame implements ActionListener {
 	}
 	
 	private void ulogujSe() {
-		//SEKA TO DO
 		try {
 			controller.ulogujSe(loginPanel.getUsername().getText(),loginPanel.getPassword().getText());
 			 JOptionPane.showMessageDialog(this, "Uspesan login");

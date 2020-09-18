@@ -17,7 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import controller.Azuriranje;
+
 import controller.Controller;
 import model.*;
 
@@ -33,7 +33,6 @@ public class UserProfile extends JPanel implements ActionListener{
 	private JButton createRecipe;
 	private JButton updateRecipe;
 	private JButton deleteRecipe;
-	//private Azuriranje az = new Azuriranje(new ArrayList<Korisnik>());
 	private Aplikacija aplikacija;
 	private Controller controller;
 	
@@ -164,12 +163,9 @@ public class UserProfile extends JPanel implements ActionListener{
 	    gbc.gridy = 8;
 	    add(deleteRecipe, gbc);
 	    setData();
-//		updateRecipe = new JButton("Izmeni recept");
-//		deleteRecipe = new JButton("Obrisi recept");
 	}
 	
 	void setData() {
-		//prosledjivanje strukture podataka tipa Korisnik i uzimanje podataka 
 		System.out.println(aplikacija.getUlogovan().getUsername());
 		System.out.println();
 		username.setText(aplikacija.getUlogovan().getUsername());
@@ -190,12 +186,9 @@ public class UserProfile extends JPanel implements ActionListener{
 			username.setEditable(false);
 		    fullName.setEditable(false);
 		    password.setEditable(false);
-//		    az.napuniKorisnike();
-//		    az.izmeniKorisnika(username.getText(), password.getText(), fullName.getText());
 		    try {
 		    	controller.azurirajKorisnika(username.getText(),password.getText(),fullName.getText());
 		    }catch(Exception e1) {
-				//izbaci dijalog il sta god...
 				JOptionPane.showMessageDialog(this, "Nevalidan unos za azuriranje!");
 				
 			}
@@ -313,16 +306,5 @@ public class UserProfile extends JPanel implements ActionListener{
 		this.deleteRecipe = deleteRecipe;
 	}
 
-//	public Azuriranje getAz() {
-//		return az;
-//	}
-//
-//
-//	public void setAz(Azuriranje az) {
-//		this.az = az;
-//	}
-	
-	// TO DO 
-	//Dodati action listener kad klikne na promeni podatke da setEditable bude true
 	
 }
